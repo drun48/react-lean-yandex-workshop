@@ -30,19 +30,16 @@ function TypeSection({
   return (
     <section>
       <h3 className="text text_type_main-medium">{title}</h3>
-      <div className={styles.container + " " + "ml-4 mt-6 mb-10"}>
+      <ul className={styles.container + " " + "ml-4 mt-6 mb-10"}>
         {listIngredientsType.map((ingredient) => (
-          <ul onClick={() => handlerActive(ingredient)}>
-            <li>
-              <CardIngredient
-                data={ingredient}
-                key={ingredient.id}
-                count={1 * Math.round(Math.random())}
-              />
-            </li>
-          </ul>
+          <li key={ingredient.id} onClick={() => handlerActive(ingredient)}>
+            <CardIngredient
+              data={ingredient}
+              count={1 * Math.round(Math.random())}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }
