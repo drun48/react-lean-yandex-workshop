@@ -41,3 +41,9 @@
   z-index: 400;
   cursor: pointer;
 }
+
+.scroll {
+  overflow: auto;
+  scrollbar-color: rgba(133, 133, 173, 1) rgba(47, 47, 55, 1);
+  scrollbar-width: thin;
+}

@@ -89,8 +89,8 @@ function BurgerIngredients() {
           </Tab>
         </div>
         <div
-          style={{ display: "flex", flexDirection: "column", overflow: "auto" }}
-          className="mt-10"
+          style={{ display: "flex", flexDirection: "column", overflowX: "hidden" }}
+          className="mt-10 scroll"
         >
           <TypeSection
             listIngredients={ingredients}

@@ -90,9 +90,8 @@ function BurgerConstructor() {
             flexDirection: "column",
             gap: "10px",
             height: "auto",
-            overflow: "auto",
           }}
-          className="mt-25 mb-10"
+          className="mt-25 mb-10 scroll"
         >
           {data.map((el, index) => {
             const type =
