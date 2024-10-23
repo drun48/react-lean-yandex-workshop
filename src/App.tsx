@@ -1,3 +1,4 @@
+import AppHeader from "./components/app-header";
 import BurgerConstructor from "./components/burger-constructor";
 import BurgerIngredients from "./components/burger-ingredients";
 import { Ingredients } from "./components/burger-ingredients/types";
@@ -228,10 +229,13 @@ function App() {
     image: item.image,
   })) as Array<Ingredients>;
   return (
-    <div style={{display:'flex', gap:'40px'}}>
-      <BurgerIngredients listIngredients={data} />
-      <BurgerConstructor />
-    </div>
+    <main style={{display:'flex', flexDirection:'column',}}>
+      <AppHeader />
+      <div style={{ display: "flex", gap: "40px", justifyContent:'center' }}>
+        <BurgerIngredients listIngredients={data} />
+        <BurgerConstructor />
+      </div>
+    </main>
   );
 }
 

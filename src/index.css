@@ -2,12 +2,22 @@
 @import url('@ya.praktikum/react-developer-burger-ui-components/dist/ui/fonts/fonts.css');
 @import url('@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css');
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root{
-  --offset-base-size:4px;
+:root {
+  --offset-base-size: 4px;
+
+  --color-disabled: rgba(133, 133, 173, 1);
+}
+
+.disabled {
+  color: var(--color-disabled);
+}
+
+.disabled svg path {
+  fill: var(--color-disabled);
 }
