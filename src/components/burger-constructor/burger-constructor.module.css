@@ -1,0 +1,10 @@
+.icon{
+    width: 36px;
+    height: 36px;
+}
+
+.icon_drag{
+    position: absolute;
+    top: calc(50% - 12px);
+    left: 0;
+}
