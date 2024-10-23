@@ -11,7 +11,7 @@ function BurgerIngredients({ listIngredients }: Props) {
   const [current, setCurrent] = useState<string>("");
   return (
     <div
-      style={{ display: "flex", flexDirection: "column", maxWidth: "600px" }}
+      style={{ display: "flex", flexDirection: "column", height:'80vh', maxWidth:'600px' }}
       className="pt-10"
     >
       <h2 className="text text_type_main-large">Соберите бургер</h2>
@@ -30,17 +30,23 @@ function BurgerIngredients({ listIngredients }: Props) {
           Начинки
         </Tab>
       </div>
-      <TypeSection listIngredients={listIngredients} title="Булки" type="bun" />
-      <TypeSection
-        listIngredients={listIngredients}
-        title="Соусы"
-        type="sauce"
-      />
-      <TypeSection
-        listIngredients={listIngredients}
-        title="Начинки"
-        type="main"
-      />
+      <div style={{display:'flex', flexDirection:'column', overflow:'auto'}} className="mt-10">
+        <TypeSection
+          listIngredients={listIngredients}
+          title="Булки"
+          type="bun"
+        />
+        <TypeSection
+          listIngredients={listIngredients}
+          title="Соусы"
+          type="sauce"
+        />
+        <TypeSection
+          listIngredients={listIngredients}
+          title="Начинки"
+          type="main"
+        />
+      </div>
     </div>
   );
 }

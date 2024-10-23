@@ -229,9 +229,9 @@ function App() {
     image: item.image,
   })) as Array<Ingredients>;
   return (
-    <main style={{display:'flex', flexDirection:'column',}}>
+    <main style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
       <AppHeader />
-      <div style={{ display: "flex", gap: "40px", justifyContent:'center' }}>
+      <div style={{ justifyContent:'center', gap:'40px' }} className="container">
         <BurgerIngredients listIngredients={data} />
         <BurgerConstructor />
       </div>

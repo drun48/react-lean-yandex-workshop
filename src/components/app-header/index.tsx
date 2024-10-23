@@ -23,7 +23,7 @@ function AppHeader() {
       }}
       className="p-4"
     >
-      <div style={{display: "flex", maxWidth:'1280px', width:'100%', alignItems:'center', justifyContent:'space-between'}} >
+      <div style={{alignItems:'center', justifyContent:'space-between'}} className="container" >
         <nav style={{ display: "flex" }}>
           <div style={styleNavItem} className="pr-5 pl-5 pt-4 pb-4">
             <BurgerIcon type="primary" />

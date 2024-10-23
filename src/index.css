@@ -12,6 +12,7 @@
   --offset-base-size: 4px;
 
   --color-disabled: rgba(133, 133, 173, 1);
+
 }
 
 .disabled {
@@ -20,4 +21,10 @@
 
 .disabled svg path {
   fill: var(--color-disabled);
+}
+
+.container {
+  display: flex;
+  max-width: 1280px;
+  width: 100%;
 }

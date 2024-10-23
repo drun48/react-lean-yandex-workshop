@@ -21,6 +21,48 @@ function BurgerConstructor() {
       thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
     },
     {
+      isLocked: false,
+      text: "Краторная булка N-200i (верх)",
+      price: 200,
+      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
+    },
+    {
+      isLocked: true,
+      text: "Краторная булка N-200i (верх)",
+      price: 200,
+      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
+    },
+    {
+      isLocked: true,
+      text: "Краторная булка N-200i (верх)",
+      price: 200,
+      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
+    },
+    {
+      isLocked: true,
+      text: "Краторная булка N-200i (верх)",
+      price: 200,
+      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
+    },
+    {
+      isLocked: true,
+      text: "Краторная булка N-200i (верх)",
+      price: 200,
+      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
+    },
+    {
+      isLocked: true,
+      text: "Краторная булка N-200i (верх)",
+      price: 200,
+      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
+    },
+    {
+      isLocked: false,
+      text: "Краторная булка N-200i (верх)",
+      price: 200,
+      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
+    },
+    {
       isLocked: true,
       text: "Краторная булка N-200i (верх)",
       price: 200,
@@ -28,7 +70,7 @@ function BurgerConstructor() {
     },
   ];
   return (
-    <div>
+    <div style={{display:'flex', flexDirection:"column",  height:'80vh', maxWidth:'600px', width:'100%'}}>
       <div
         style={{
           display: "flex",
