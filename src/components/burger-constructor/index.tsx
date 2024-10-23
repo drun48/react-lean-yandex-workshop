@@ -5,8 +5,11 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./burger-constructor.module.css";
+import { useState } from "react";
+import ModalBookingNotification from "./modal-booking-notification";
 
 function BurgerConstructor() {
+  const [isOpenModal, setOpenModal] = useState(false);
   const data = [
     {
       isLocked: true,
@@ -70,49 +73,66 @@ function BurgerConstructor() {
     },
   ];
   return (
-    <div style={{display:'flex', flexDirection:"column",  height:'80vh', maxWidth:'600px', width:'100%'}}>
+    <>
+      {isOpenModal && <ModalBookingNotification handlerClose={setOpenModal} />}
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "10px",
-          height: "auto",
-          overflow: "auto",
-        }}
-        className="mt-25 mb-10"
-      >
-        {data.map((el, index) => {
-          const type =
-            index === 0
-              ? "top"
-              : index === data.length - 1
-              ? "bottom"
-              : undefined;
-          return (
-            <div style={{position:"relative"}} className="pl-8" key={index}>
-              {!el.isLocked && <DragIcon type="primary" className={style.icon_drag}/>}
-              <ConstructorElement {...el} type={type} />
-            </div>
-          );
-        })}
-      </div>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-end",
+          height: "80vh",
+          maxWidth: "600px",
+          width: "100%",
         }}
       >
-        <p className="type text_type_digits-medium">610</p>
-        <CurrencyIcon
-          type="primary"
-          className={style.icon + " " + "mr-10 ml-2"}
-        />
-        <Button htmlType="button" type="primary" size="medium">
-          Оформить заказ
-        </Button>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            height: "auto",
+            overflow: "auto",
+          }}
+          className="mt-25 mb-10"
+        >
+          {data.map((el, index) => {
+            const type =
+              index === 0
+                ? "top"
+                : index === data.length - 1
+                ? "bottom"
+                : undefined;
+            return (
+              <div
+                style={{ position: "relative" }}
+                className="pl-8"
+                key={index}
+              >
+                {!el.isLocked && (
+                  <DragIcon type="primary" className={style.icon_drag} />
+                )}
+                <ConstructorElement {...el} type={type} />
+              </div>
+            );
+          })}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+          }}
+        >
+          <p className="type text_type_digits-medium">610</p>
+          <CurrencyIcon
+            type="primary"
+            className={style.icon + " " + "mr-10 ml-2"}
+          />
+          <Button htmlType="button" type="primary" size="medium" onClick={()=>{setOpenModal(true)}}>
+            Оформить заказ
+          </Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -8,7 +8,6 @@ type Props = {
 };
 
 function CardIngredient({ data, count }: Props) {
-  console.log(count)
   return (
     <article className={styles.card} style={{position:'relative'}}>
       {count > 0 && <Counter count={count} size="default" extraClass="m-1" />}
