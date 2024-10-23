@@ -11,8 +11,8 @@
 :root {
   --offset-base-size: 4px;
 
-  --color-disabled: rgba(133, 133, 173, 1);
-
+  --gray-main:rgba(133, 133, 173, 1);
+  --color-main:rgba(28, 28, 33, 1);
 }
 
 ul {
@@ -20,11 +20,11 @@ ul {
 }
 
 .disabled {
-  color: var(--color-disabled);
+  color: var(--gray-main);
 }
 
 .disabled svg path {
-  fill: var(--color-disabled);
+  fill: var(--gray-main);
 }
 
 .container {
@@ -48,6 +48,6 @@ ul {
 
 .scroll {
   overflow: auto;
-  scrollbar-color: rgba(133, 133, 173, 1) rgba(47, 47, 55, 1);
+  scrollbar-color: var(--gray-main) rgba(47, 47, 55, 1);
   scrollbar-width: thin;
 }

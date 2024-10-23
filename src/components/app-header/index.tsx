@@ -19,7 +19,7 @@ function AppHeader() {
         alignItems:'center',
         justifyContent:'center',
         width: "100%",
-        background: "rgba(28, 28, 33, 1)",
+        background: "var(--color-main)",
       }}
       className="p-4"
     >
