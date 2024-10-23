@@ -6,7 +6,7 @@ type Props = {
   handlerClose?:HandlerClose
 };
 
-function ModalBookingNotification({ handlerClose }: Props) {
+function OrderDetails({ handlerClose }: Props) {
   return (
     <BaseModal handlerClose={handlerClose}>
       <div style={{display:'flex', flexDirection:'column', alignItems:'center'}} className="pt-20 pb-20">
@@ -22,4 +22,4 @@ function ModalBookingNotification({ handlerClose }: Props) {
   );
 }
 
-export default ModalBookingNotification;
+export default OrderDetails;

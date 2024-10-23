@@ -14,7 +14,7 @@ const info = [
   { key: "carbohydrates", title: "Углеводы, г" },
 ];
 
-function ModalIngredientInfo({ data, handlerClose }: Props) {
+function IngredientDetails({ data, handlerClose }: Props) {
   return (
     <BaseModal handlerClose={handlerClose} title="Детали ингредиента">
       <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
@@ -33,4 +33,4 @@ function ModalIngredientInfo({ data, handlerClose }: Props) {
   );
 }
 
-export default ModalIngredientInfo;
+export default IngredientDetails;

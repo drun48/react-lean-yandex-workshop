@@ -2,7 +2,7 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import TypeSection from "./type-section";
 import { Ingredients } from "./types";
 import { useEffect, useState } from "react";
-import ModalIngredientInfo from "./modal-ingredient-info";
+import IngredientDetails from "./ingredient-details";
 import Loader from "../loader";
 
 function BurgerIngredients() {
@@ -58,7 +58,7 @@ function BurgerIngredients() {
     <>
       {isLoading && <Loader/>}
       {isOpenModal && activeIngredient && (
-        <ModalIngredientInfo
+        <IngredientDetails
           data={activeIngredient}
           handlerClose={setOpenModal}
         />

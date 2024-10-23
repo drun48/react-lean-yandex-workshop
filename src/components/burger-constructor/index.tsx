@@ -6,7 +6,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./burger-constructor.module.css";
 import { useState } from "react";
-import ModalBookingNotification from "./modal-booking-notification";
+import OrderDetails from "./order-details";
 
 function BurgerConstructor() {
   const [isOpenModal, setOpenModal] = useState(false);
@@ -74,7 +74,7 @@ function BurgerConstructor() {
   ];
   return (
     <>
-      {isOpenModal && <ModalBookingNotification handlerClose={setOpenModal} />}
+      {isOpenModal && <OrderDetails handlerClose={setOpenModal} />}
       <div
         style={{
           display: "flex",
