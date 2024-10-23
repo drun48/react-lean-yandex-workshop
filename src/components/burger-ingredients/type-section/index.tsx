@@ -23,7 +23,7 @@ function TypeSection({
 
   const handlerActive = (ingredient: Ingredients) => {
     if (setActiveIngredient) {
-      setActiveIngredient(ingredient);
+      setActiveIngredient({...ingredient});
     }
   };
 
