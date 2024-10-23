@@ -4,6 +4,7 @@ import { Ingredients } from "./types";
 import { useEffect, useState } from "react";
 import IngredientDetails from "./ingredient-details";
 import Loader from "../loader";
+import { apiURL } from "../../constants";
 
 function BurgerIngredients() {
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -21,7 +22,7 @@ function BurgerIngredients() {
     (async () => {
       try {
         const res = await fetch(
-          "https://norma.nomoreparties.space/api/ingredients"
+          `${apiURL}/api/ingredients`
         );
         const data = (await res.json()).data;
         setLoading(false);

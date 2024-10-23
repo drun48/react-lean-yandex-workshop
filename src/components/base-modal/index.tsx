@@ -3,15 +3,16 @@ import style from "./base-modal.module.css";
 import { HandlerClose } from "./type";
 import { createPortal } from "react-dom";
 import { useEffect } from "react";
+import ModalOverlay from "./modal-overlay";
 
-type Prop = {
+type Props = {
   isOpen?: boolean;
   title?: string;
   children?: React.ReactNode;
   handlerClose?: HandlerClose;
 };
 
-function BaseModal({ children, title, handlerClose }: Prop) {
+function BaseModal({ children, title, handlerClose }: Props) {
   const handlerClickOverlay = () => {
     if (handlerClose) {
       handlerClose(false);
@@ -30,7 +31,7 @@ function BaseModal({ children, title, handlerClose }: Prop) {
   }, []);
   return createPortal(
     <>
-      <div className="overlay" onClick={handlerClickOverlay} />
+      <ModalOverlay onClick={handlerClickOverlay} />
       <article className={style.modal + " " + "p-10"}>
         {title ? (
           <div className={style.dialog_title}>
