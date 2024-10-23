@@ -7,7 +7,6 @@ import Loader from "../loader";
 
 function BurgerIngredients() {
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [hasError, setError] = useState<boolean>(false);
   const [ingredients, setIngredients] = useState<Array<Ingredients>>([]);
 
   const [current, setCurrent] = useState<string>("");
@@ -19,7 +18,6 @@ function BurgerIngredients() {
 
   useEffect(() => {
     setLoading(true);
-    setError(false);
     (async () => {
       try {
         const res = await fetch(
@@ -43,8 +41,8 @@ function BurgerIngredients() {
         );
       } catch (e) {
         setLoading(false);
-        setError(true);
         setIngredients([]);
+        console.error(e)
       }
     })();
   }, []);
