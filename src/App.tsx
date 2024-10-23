@@ -227,6 +227,7 @@ function App() {
     calories: item.calories,
     price: item.price,
     image: item.image,
+    image_large: item.image_large,
   })) as Array<Ingredients>;
   return (
     <main style={{display:'flex', flexDirection:'column', alignItems:'center'}}>

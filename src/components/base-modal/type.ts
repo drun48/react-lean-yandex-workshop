@@ -1,0 +1,1 @@
+export type HandlerClose = (value:boolean)=>void

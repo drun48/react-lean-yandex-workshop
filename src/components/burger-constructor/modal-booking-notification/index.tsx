@@ -1,8 +1,9 @@
 import BaseModal from "../../base-modal";
 import image from '../../../assets/img/done.svg'
+import { HandlerClose } from "../../base-modal/type";
 
 type Props = {
-  handlerClose?: (value: boolean) => void;
+  handlerClose?:HandlerClose
 };
 
 function ModalBookingNotification({ handlerClose }: Props) {
