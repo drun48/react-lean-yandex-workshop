@@ -3,7 +3,7 @@ import { Ingredients } from "../types";
 import CardIngredient from "../card-ingredients";
 import styles from "./type-section.module.css";
 
-type Prop = {
+type Props = {
   title: string;
   listIngredients: Array<Ingredients>;
   type: string;
@@ -15,7 +15,7 @@ function TypeSection({
   listIngredients,
   type,
   setActiveIngredient,
-}: Prop) {
+}: Props) {
   const listIngredientsType = useMemo(
     () => listIngredients.filter((item) => item.type === type),
     [listIngredients, type]

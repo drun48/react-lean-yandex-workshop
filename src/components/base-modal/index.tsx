@@ -18,7 +18,7 @@ function BaseModal({ children, title, handlerClose }: Prop) {
   return (
     <>
       <div className={style.overlay} onClick={handlerClickOverlay} />
-      <article className={style.modal + " " + "p-10"}>
+      <article className="overlay p-10">
         {title ? (
           <div className={style.dialog_title}>
             <h3 className="text_type_main-large">{title}</h3>

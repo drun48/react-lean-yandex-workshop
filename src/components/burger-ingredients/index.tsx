@@ -3,17 +3,52 @@ import TypeSection from "./type-section";
 import { Ingredients } from "./types";
 import { useEffect, useState } from "react";
 import ModalIngredientInfo from "./modal-ingredient-info";
+import Loader from "../loader";
 
-type Props = {
-  listIngredients: Array<Ingredients>;
-};
+function BurgerIngredients() {
+  const [isLoading, setLoading] = useState<boolean>(false);
+  const [hasError, setError] = useState<boolean>(false);
+  const [ingredients, setIngredients] = useState<Array<Ingredients>>([]);
 
-function BurgerIngredients({ listIngredients }: Props) {
   const [current, setCurrent] = useState<string>("");
+
   const [isOpenModal, setOpenModal] = useState<boolean>(false);
   const [activeIngredient, setActiveIngredient] = useState<Ingredients | null>(
     null
   );
+
+  useEffect(() => {
+    setLoading(true);
+    setError(false);
+    (async () => {
+      try {
+        const res = await fetch(
+          "https://norma.nomoreparties.space/api/ingredients"
+        );
+        const data = (await res.json()).data;
+        setLoading(false);
+        setIngredients(
+          data.map((item: Ingredients & { _id: string }) => ({
+            id: item._id,
+            name: item.name,
+            type: item.type,
+            proteins: item.proteins,
+            fat: item.fat,
+            carbohydrates: item.carbohydrates,
+            calories: item.calories,
+            price: item.price,
+            image: item.image,
+            image_large: item.image_large,
+          }))
+        );
+      } catch (e) {
+        setLoading(false);
+        setError(true);
+        setIngredients([]);
+      }
+    })();
+  }, []);
+
   useEffect(() => {
     if (activeIngredient) {
       setOpenModal(true);
@@ -21,6 +56,7 @@ function BurgerIngredients({ listIngredients }: Props) {
   }, [activeIngredient]);
   return (
     <>
+      {isLoading && <Loader/>}
       {isOpenModal && activeIngredient && (
         <ModalIngredientInfo
           data={activeIngredient}
@@ -57,19 +93,19 @@ function BurgerIngredients({ listIngredients }: Props) {
           className="mt-10"
         >
           <TypeSection
-            listIngredients={listIngredients}
+            listIngredients={ingredients}
             title="Булки"
             type="bun"
             setActiveIngredient={setActiveIngredient}
           />
           <TypeSection
-            listIngredients={listIngredients}
+            listIngredients={ingredients}
             title="Соусы"
             type="sauce"
             setActiveIngredient={setActiveIngredient}
           />
           <TypeSection
-            listIngredients={listIngredients}
+            listIngredients={ingredients}
             title="Начинки"
             type="main"
             setActiveIngredient={setActiveIngredient}
