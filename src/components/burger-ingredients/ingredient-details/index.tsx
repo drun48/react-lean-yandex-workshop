@@ -21,8 +21,8 @@ function IngredientDetails({ data, handlerClose }: Props) {
         <img src={data.image_large} className="mb-4"/>
         <p className="text_type_main-medium">{data.name}</p>
         <ul style={{display:'flex', gap:'20px'}} className="mt-8">
-          {info.map((item) => (
-            <li className="disabled" style={{display:'flex', flexDirection:'column', alignItems:'center', gap:'8px'}}>
+          {info.map((item, index) => (
+            <li key={index} className="disabled" style={{display:'flex', flexDirection:'column', alignItems:'center', gap:'8px'}}>
               <p className="text_type_main-default">{item.title}</p>
               <p className="text_type_digits-default">{(data as Record<string, string | number>)[item.key]}</p>
             </li>
