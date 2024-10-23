@@ -20,14 +20,14 @@ function ModalIngredientInfo({ data, handlerClose }: Props) {
       <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
         <img src={data.image_large} className="mb-4"/>
         <p className="text_type_main-medium">{data.name}</p>
-        <div style={{display:'flex', gap:'20px'}} className="mt-8">
+        <ul style={{display:'flex', gap:'20px'}} className="mt-8">
           {info.map((item) => (
-            <div className="disabled" style={{display:'flex', flexDirection:'column', alignItems:'center', gap:'8px'}}>
+            <li className="disabled" style={{display:'flex', flexDirection:'column', alignItems:'center', gap:'8px'}}>
               <p className="text_type_main-default">{item.title}</p>
               <p className="text_type_digits-default">{(data as Record<string, string | number>)[item.key]}</p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </BaseModal>
   );

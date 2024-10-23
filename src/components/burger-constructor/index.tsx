@@ -84,7 +84,7 @@ function BurgerConstructor() {
           width: "100%",
         }}
       >
-        <div
+        <ul
           style={{
             display: "flex",
             flexDirection: "column",
@@ -101,7 +101,7 @@ function BurgerConstructor() {
                 ? "bottom"
                 : undefined;
             return (
-              <div
+              <li
                 style={{ position: "relative" }}
                 className="pl-8"
                 key={index}
@@ -110,10 +110,10 @@ function BurgerConstructor() {
                   <DragIcon type="primary" className={style.icon_drag} />
                 )}
                 <ConstructorElement {...el} type={type} />
-              </div>
+              </li>
             );
           })}
-        </div>
+        </ul>
         <div
           style={{
             display: "flex",
@@ -126,7 +126,14 @@ function BurgerConstructor() {
             type="primary"
             className={style.icon + " " + "mr-10 ml-2"}
           />
-          <Button htmlType="button" type="primary" size="medium" onClick={()=>{setOpenModal(true)}}>
+          <Button
+            htmlType="button"
+            type="primary"
+            size="medium"
+            onClick={() => {
+              setOpenModal(true);
+            }}
+          >
             Оформить заказ
           </Button>
         </div>
