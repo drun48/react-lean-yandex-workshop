@@ -60,6 +60,6 @@ ul {
 
 main{
   display: flex;
-  flex-direction: column;
+  justify-items: center;
   gap: 40px;
 }
