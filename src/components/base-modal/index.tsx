@@ -29,6 +29,7 @@ function BaseModal({ children, title, handlerClose }: Props) {
       window.removeEventListener("keydown", handlerKey);
     };
   }, []);
+
   return createPortal(
     <>
       <ModalOverlay onClick={handlerClickOverlay} />
@@ -52,7 +53,7 @@ function BaseModal({ children, title, handlerClose }: Props) {
         {children}
       </article>
     </>,
-    document.body
+    document.getElementById("modals") ?? document.body
   );
 }
 
