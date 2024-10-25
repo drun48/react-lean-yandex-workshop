@@ -1,0 +1,16 @@
+.burger-ingredients {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    max-width: 600px;
+}
+
+.burger-ingredients__tubs {
+    display: flex;
+}
+
+.burger-ingredients__items {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
