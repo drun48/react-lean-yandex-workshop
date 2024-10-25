@@ -4,18 +4,18 @@ import BurgerIngredients from "./components/burger-ingredients";
 
 function App() {
   return (
-    <main
+    <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <AppHeader />
-      <div
+      <main
         style={{ justifyContent: "center", gap: "40px" }}
         className="container"
       >
         <BurgerIngredients />
         <BurgerConstructor />
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
 
