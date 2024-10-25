@@ -5,72 +5,54 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-constructor.module.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import OrderDetails from "./order-details";
 import BaseModal from "../base-modal";
 
 function BurgerConstructor() {
   const [isOpenModal, setOpenModal] = useState(false);
+  const bun = useRef({
+    isLocked: true,
+    text: "Краторная булка N-200i",
+    price: 1255,
+    thumbnail: "https://code.s3.yandex.net/react/code/bun-02.png",
+  });
   const data = [
     {
-      isLocked: true,
-      text: "Краторная булка N-200i (верх)",
-      price: 200,
+      isLocked: false,
+      text: "Соус Spicy-X",
+      price: 90,
+      thumbnail: "https://code.s3.yandex.net/react/code/sauce-02.png",
+    },
+    {
+      isLocked: false,
+      text: "Говяжий метеорит (отбивная)",
+      price: 3000,
+      thumbnail: "https://code.s3.yandex.net/react/code/meat-04.png",
+    },
+    {
+      isLocked: false,
+      text: "Хрустящие минеральные кольца",
+      price: 300,
       thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
     },
     {
       isLocked: false,
-      text: "Краторная булка N-200i (верх)",
-      price: 200,
+      text: "Говяжий метеорит (отбивная)",
+      price: 3000,
+      thumbnail: "https://code.s3.yandex.net/react/code/meat-04.png",
+    },
+    {
+      isLocked: false,
+      text: "Хрустящие минеральные кольца",
+      price: 300,
       thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
     },
     {
       isLocked: false,
-      text: "Краторная булка N-200i (верх)",
-      price: 200,
-      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
-    },
-    {
-      isLocked: true,
-      text: "Краторная булка N-200i (верх)",
-      price: 200,
-      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
-    },
-    {
-      isLocked: true,
-      text: "Краторная булка N-200i (верх)",
-      price: 200,
-      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
-    },
-    {
-      isLocked: true,
-      text: "Краторная булка N-200i (верх)",
-      price: 200,
-      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
-    },
-    {
-      isLocked: true,
-      text: "Краторная булка N-200i (верх)",
-      price: 200,
-      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
-    },
-    {
-      isLocked: true,
-      text: "Краторная булка N-200i (верх)",
-      price: 200,
-      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
-    },
-    {
-      isLocked: false,
-      text: "Краторная булка N-200i (верх)",
-      price: 200,
-      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
-    },
-    {
-      isLocked: true,
-      text: "Краторная булка N-200i (верх)",
-      price: 200,
-      thumbnail: "https://code.s3.yandex.net/react/code/mineral_rings.png",
+      text: "Соус Spicy-X",
+      price: 90,
+      thumbnail: "https://code.s3.yandex.net/react/code/sauce-02.png",
     },
   ];
   return (
@@ -80,32 +62,39 @@ function BurgerConstructor() {
           <OrderDetails />
         </BaseModal>
       )}
-      <div className={styles["burger-constructor"]}>
-        <ul
-          className={[
-            styles["burger-constructor__list"],
-            "mt-25",
-            "mb-10",
-            "scroll",
-          ].join(" ")}
+      <div className={[styles["burger-constructor"], "mt-25"].join(" ")}>
+        <div
+          className={[styles["burger-constructor__list"], "mb-10"].join(" ")}
         >
-          {data.map((el, index) => {
-            const type =
-              index === 0
-                ? "top"
-                : index === data.length - 1
-                ? "bottom"
-                : undefined;
-            return (
-              <li className="pl-8" key={index}>
-                {!el.isLocked && (
-                  <DragIcon type="primary" className={styles["icon-drag"]} />
-                )}
-                <ConstructorElement {...el} type={type} />
-              </li>
-            );
-          })}
-        </ul>
+          <div className="pl-8">
+            <ConstructorElement
+              {...bun.current}
+              type="top"
+              text={bun.current.text + " (верх)"}
+            />
+          </div>
+          <ul
+            className={[styles["burger-constructor__list"], "scroll"].join(" ")}
+          >
+            {data.map((el, index) => {
+              return (
+                <li className="pl-8" key={index}>
+                  {!el.isLocked && (
+                    <DragIcon type="primary" className={styles["icon-drag"]} />
+                  )}
+                  <ConstructorElement {...el} />
+                </li>
+              );
+            })}
+          </ul>
+          <div className="pl-8">
+            <ConstructorElement
+              {...bun.current}
+              type="bottom"
+              text={bun.current.text + " (низ)"}
+            />
+          </div>
+        </div>
         <div className={styles["burger-constructor__order"]}>
           <p className="type text_type_digits-medium">610</p>
           <CurrencyIcon
