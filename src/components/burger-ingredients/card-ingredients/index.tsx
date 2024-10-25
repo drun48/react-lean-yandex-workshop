@@ -9,7 +9,7 @@ type Props = {
 
 function CardIngredient({ data, count }: Props) {
   return (
-    <article className={styles.card} style={{position:'relative'}}>
+    <article className={styles.card}>
       {count > 0 && <Counter count={count} size="default" extraClass="m-1" />}
       <img src={data.image} className="pl-4 pr-4"/>
       <div className={styles.price}>
