@@ -6,6 +6,7 @@ import IngredientDetails from "./ingredient-details";
 import Loader from "../loader";
 import { apiURL } from "../../constants";
 import styles from "./burger-ingredients.module.css";
+import BaseModal from "../base-modal";
 
 function BurgerIngredients() {
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -56,10 +57,9 @@ function BurgerIngredients() {
     <>
       {isLoading && <Loader />}
       {isOpenModal && activeIngredient && (
-        <IngredientDetails
-          data={activeIngredient}
-          handlerClose={setOpenModal}
-        />
+        <BaseModal handlerClose={setOpenModal} title="Детали ингредиента">
+          <IngredientDetails data={activeIngredient} />
+        </BaseModal>
       )}
       <div className={[styles["burger-ingredients"], "pt-10"].join(" ")}>
         <h2 className="text text_type_main-large">Соберите бургер</h2>
