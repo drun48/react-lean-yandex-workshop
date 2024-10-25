@@ -7,6 +7,7 @@ import {
 import styles from "./burger-constructor.module.css";
 import { useState } from "react";
 import OrderDetails from "./order-details";
+import BaseModal from "../base-modal";
 
 function BurgerConstructor() {
   const [isOpenModal, setOpenModal] = useState(false);
@@ -74,7 +75,11 @@ function BurgerConstructor() {
   ];
   return (
     <>
-      {isOpenModal && <OrderDetails handlerClose={setOpenModal} />}
+      {isOpenModal && (
+        <BaseModal handlerClose={setOpenModal}>
+          <OrderDetails />
+        </BaseModal>
+      )}
       <div className={styles["burger-constructor"]}>
         <ul
           className={[
