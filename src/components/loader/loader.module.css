@@ -5,6 +5,14 @@
 	font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1280 - 320));
 }
 
+.loader{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 900;
+}
+
 .ap {
 	width: 8em;
 	height: 16em;

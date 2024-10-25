@@ -2,16 +2,8 @@ import style from "./loader.module.css";
 function Loader() {
   return (
     <>
-      <div className="overlay"/>
-      <div
-        style={{
-          position: "fixed",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          zIndex: "900",
-        }}
-      >
+      <div className="overlay" />
+      <div className={style.loader}>
         <svg
           className={style.ap}
           viewBox="0 0 128 256"
