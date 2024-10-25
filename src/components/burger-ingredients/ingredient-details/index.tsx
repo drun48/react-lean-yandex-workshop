@@ -1,6 +1,7 @@
 import BaseModal from "../../base-modal";
 import { HandlerClose } from "../../base-modal/type";
 import { Ingredients } from "../types";
+import styles from "./ingredient-details.module.css";
 
 type Props = {
   data: Ingredients;
@@ -17,14 +18,16 @@ const info = [
 function IngredientDetails({ data, handlerClose }: Props) {
   return (
     <BaseModal handlerClose={handlerClose} title="Детали ингредиента">
-      <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-        <img src={data.image_large} className="mb-4"/>
+      <div className={styles["ingredient-details"]}>
+        <img src={data.image_large} className="mb-4" />
         <p className="text_type_main-medium">{data.name}</p>
-        <ul style={{display:'flex', gap:'20px'}} className="mt-8">
+        <ul className={[styles["ingredient-details__list"], "mt-8"].join(" ")}>
           {info.map((item, index) => (
-            <li key={index} className="disabled" style={{display:'flex', flexDirection:'column', alignItems:'center', gap:'8px'}}>
+            <li key={index} className={styles["list__item"]}>
               <p className="text_type_main-default">{item.title}</p>
-              <p className="text_type_digits-default">{(data as Record<string, string | number>)[item.key]}</p>
+              <p className="text_type_digits-default">
+                {(data as Record<string, string | number>)[item.key]}
+              </p>
             </li>
           ))}
         </ul>
