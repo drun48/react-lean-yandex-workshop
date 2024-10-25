@@ -4,7 +4,7 @@ import {
   CurrencyIcon,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import style from "./burger-constructor.module.css";
+import styles from "./burger-constructor.module.css";
 import { useState } from "react";
 import OrderDetails from "./order-details";
 
@@ -75,23 +75,14 @@ function BurgerConstructor() {
   return (
     <>
       {isOpenModal && <OrderDetails handlerClose={setOpenModal} />}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          height: "80vh",
-          maxWidth: "600px",
-          width: "100%",
-        }}
-      >
+      <div className={styles["burger-constructor"]}>
         <ul
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-            height: "auto",
-          }}
-          className="mt-25 mb-10 scroll"
+          className={[
+            styles["burger-constructor__list"],
+            "mt-25",
+            "mb-10",
+            "scroll",
+          ].join(" ")}
         >
           {data.map((el, index) => {
             const type =
@@ -101,30 +92,20 @@ function BurgerConstructor() {
                 ? "bottom"
                 : undefined;
             return (
-              <li
-                style={{ position: "relative" }}
-                className="pl-8"
-                key={index}
-              >
+              <li className="pl-8" key={index}>
                 {!el.isLocked && (
-                  <DragIcon type="primary" className={style.icon_drag} />
+                  <DragIcon type="primary" className={styles["icon-drag"]} />
                 )}
                 <ConstructorElement {...el} type={type} />
               </li>
             );
           })}
         </ul>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-          }}
-        >
+        <div className={styles["burger-constructor__order"]}>
           <p className="type text_type_digits-medium">610</p>
           <CurrencyIcon
             type="primary"
-            className={style.icon + " " + "mr-10 ml-2"}
+            className={styles.icon + " " + "mr-10 ml-2"}
           />
           <Button
             htmlType="button"
