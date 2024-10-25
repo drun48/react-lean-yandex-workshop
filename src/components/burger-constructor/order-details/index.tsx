@@ -1,5 +1,6 @@
 import BaseModal from "../../base-modal";
 import image from '../../../assets/img/done.svg'
+import styles from './order-details.module.css'
 import { HandlerClose } from "../../base-modal/type";
 
 type Props = {
@@ -9,7 +10,7 @@ type Props = {
 function OrderDetails({ handlerClose }: Props) {
   return (
     <BaseModal handlerClose={handlerClose}>
-      <div style={{display:'flex', flexDirection:'column', alignItems:'center'}} className="pt-20 pb-20">
+      <div className={[styles['order-details'], 'pt-20', 'pb-20'].join(' ')}>
         <h2 className="text_type_digits-large mt-8">034536</h2>
         <p className="text_type_main-default">идентификатор заказа</p>
         <img src={image} className="mt-15 mb-15"/>
