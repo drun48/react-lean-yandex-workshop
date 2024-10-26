@@ -1,0 +1,12 @@
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+    align-items: center;
+    cursor: pointer;
+}
+.price{
+    display: flex;
+    gap: 8px;
+}

@@ -1,0 +1,35 @@
+.burger-constructor {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 600px;
+    width: 100%;
+}
+
+.burger-constructor__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 60vh;
+}
+
+.burger-constructor__list li {
+    position: relative;
+}
+
+.burger-constructor__order {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    width: 36px;
+    height: 36px;
+}
+
+.icon-drag {
+    position: absolute;
+    top: calc(50% - 12px);
+    left: 0;
+}

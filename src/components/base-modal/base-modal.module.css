@@ -1,0 +1,29 @@
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-main);
+    border-radius: 40px;
+    min-width: 400px;
+    min-height: 300px;
+
+    z-index: 500;
+}
+
+.dialog_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.only_close{
+    position: absolute;
+    top: 60px;
+    right: 40px;
+}
+
+.close_icon{
+    cursor: pointer;
+}
