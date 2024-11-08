@@ -1,9 +1,6 @@
-import { Ingredients } from "../types";
+import { useSelector } from "react-redux";
 import styles from "./ingredient-details.module.css";
-
-type Props = {
-  data: Ingredients;
-};
+import { getCurrentIngredient } from "../../../services/current-ingredient/slice";
 
 const info = [
   { key: "calories", title: "Калории,ккал" },
@@ -12,11 +9,12 @@ const info = [
   { key: "carbohydrates", title: "Углеводы, г" },
 ];
 
-function IngredientDetails({ data }: Props) {
+function IngredientDetails() {
+  const data = useSelector(getCurrentIngredient)
   return (
     <div className={styles["ingredient-details"]}>
-      <img src={data.image_large} className="mb-4" />
-      <p className="text_type_main-medium">{data.name}</p>
+      <img src={data?.image_large} className="mb-4" />
+      <p className="text_type_main-medium">{data?.name}</p>
       <ul className={[styles["ingredient-details__list"], "mt-8"].join(" ")}>
         {info.map((item, index) => (
           <li key={index} className={styles["list__item"]}>

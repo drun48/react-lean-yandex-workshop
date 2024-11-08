@@ -1,29 +1,34 @@
 import { useMemo } from "react";
-import { Ingredients } from "../types";
 import CardIngredient from "../card-ingredients";
 import styles from "./type-section.module.css";
+import { set } from "../../../services/current-ingredient/slice";
+import { Ingredients } from "../../../api/ingredients/types";
+import { useAppDispatch } from "../../../services";
 
 type Props = {
   title: string;
   listIngredients: Array<Ingredients>;
   type: string;
-  setActiveIngredient?: (value: Ingredients) => void;
+  handlerOpenModal?: (value: boolean) => void;
 };
 
 function TypeSection({
   title,
   listIngredients,
   type,
-  setActiveIngredient,
+  handlerOpenModal,
 }: Props) {
+  const dispatch = useAppDispatch();
+
   const listIngredientsType = useMemo(
     () => listIngredients.filter((item) => item.type === type),
     [listIngredients, type]
   );
 
   const handlerActive = (ingredient: Ingredients) => {
-    if (setActiveIngredient) {
-      setActiveIngredient({...ingredient});
+    dispatch(set(ingredient));
+    if (handlerOpenModal) {
+      handlerOpenModal(true);
     }
   };
 

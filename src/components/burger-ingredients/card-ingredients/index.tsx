@@ -1,6 +1,6 @@
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { Ingredients } from "../types";
 import styles from './card-ingredients.module.css'
+import { Ingredients } from "../../../api/ingredients/types";
 
 type Props = {
   data: Pick<Ingredients, 'id' | 'name' | 'price' |'image'>;

@@ -1,79 +1,55 @@
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import TypeSection from "./type-section";
-import { Ingredients } from "./types";
 import { useEffect, useState } from "react";
 import IngredientDetails from "./ingredient-details";
 import Loader from "../loader";
-import { apiURL } from "../../constants";
 import styles from "./burger-ingredients.module.css";
 import BaseModal from "../base-modal";
+import { getStateIngredients } from "../../services/ingredients/slice";
+import { getList } from "../../services/ingredients/actions";
+import { useAppDispatch, useAppSelector } from "../../services";
 
 function BurgerIngredients() {
-  const [isLoading, setLoading] = useState<boolean>(false);
-  const [ingredients, setIngredients] = useState<Array<Ingredients>>([]);
+  const dispatch = useAppDispatch();
+  const { list: ingredients, loading: isLoading } =
+  useAppSelector(getStateIngredients);
 
-  const [current, setCurrent] = useState<string>("");
-
+  const [currentTab, setCurrentTab] = useState<string>("");
   const [isOpenModal, setOpenModal] = useState<boolean>(false);
-  const [activeIngredient, setActiveIngredient] = useState<Ingredients | null>(
-    null
-  );
 
   useEffect(() => {
-    setLoading(true);
-    (async () => {
-      try {
-        const res = await fetch(`${apiURL}/api/ingredients`);
-        const data = (await res.json()).data;
-        setLoading(false);
-        setIngredients(
-          data.map((item: Ingredients & { _id: string }) => ({
-            id: item._id,
-            name: item.name,
-            type: item.type,
-            proteins: item.proteins,
-            fat: item.fat,
-            carbohydrates: item.carbohydrates,
-            calories: item.calories,
-            price: item.price,
-            image: item.image,
-            image_large: item.image_large,
-          }))
-        );
-      } catch (e) {
-        setLoading(false);
-        setIngredients([]);
-        console.error(e);
-      }
-    })();
-  }, []);
+    dispatch(getList());
+  }, [dispatch]);
 
-  useEffect(() => {
-    if (activeIngredient) {
-      setOpenModal(true);
-    }
-  }, [activeIngredient]);
   return (
     <>
       {isLoading && <Loader />}
-      {isOpenModal && activeIngredient && (
+      {isOpenModal && (
         <BaseModal handlerClose={setOpenModal} title="Детали ингредиента">
-          <IngredientDetails data={activeIngredient} />
+          <IngredientDetails />
         </BaseModal>
       )}
       <div className={[styles["burger-ingredients"], "pt-10"].join(" ")}>
         <h2 className="text text_type_main-large">Соберите бургер</h2>
         <div className={[styles["burger-ingredients__tubs"], "mt-5"].join(" ")}>
-          <Tab value="Булки" active={current === "Булки"} onClick={setCurrent}>
+          <Tab
+            value="Булки"
+            active={currentTab === "Булки"}
+            onClick={setCurrentTab}
+          >
             Булки
           </Tab>
-          <Tab value="Соусы" active={current === "Соусы"} onClick={setCurrent}>
+          <Tab
+            value="Соусы"
+            active={currentTab === "Соусы"}
+            onClick={setCurrentTab}
+          >
             Соусы
           </Tab>
           <Tab
             value="Начинки"
-            active={current === "Начинки"}
-            onClick={setCurrent}
+            active={currentTab === "Начинки"}
+            onClick={setCurrentTab}
           >
             Начинки
           </Tab>
@@ -89,19 +65,19 @@ function BurgerIngredients() {
             listIngredients={ingredients}
             title="Булки"
             type="bun"
-            setActiveIngredient={setActiveIngredient}
+            handlerOpenModal={setOpenModal}
           />
           <TypeSection
             listIngredients={ingredients}
             title="Соусы"
             type="sauce"
-            setActiveIngredient={setActiveIngredient}
+            handlerOpenModal={setOpenModal}
           />
           <TypeSection
             listIngredients={ingredients}
             title="Начинки"
             type="main"
-            setActiveIngredient={setActiveIngredient}
+            handlerOpenModal={setOpenModal}
           />
         </div>
       </div>
