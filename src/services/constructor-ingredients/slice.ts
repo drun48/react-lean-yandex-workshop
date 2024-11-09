@@ -1,15 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Ingredients } from "../../api/ingredients/types";
+import uuid4 from "uuid4";
+
+export type ConstructorItem = Ingredients & { uniqueId: string };
 
 type InitialState = {
   bun: Ingredients | null;
-  list: Ingredients[];
+  list: ConstructorItem[];
 };
 
 type ActionSortIngredient = {
   payload: {
-    currentIndex: number;
-    newIndex: number;
+    currentElement: ConstructorItem;
+    offsetElement: ConstructorItem;
   };
 };
 
@@ -22,20 +25,39 @@ export const sliceConstructorIngredient = createSlice({
   name: "constructorIngredient",
   initialState,
   reducers: {
-    addIngredient(state, action: { payload: Ingredients }) {
-      if (action.payload.type === "bun") {
-        state.bun = action.payload;
-        return;
-      }
-      state.list.push(action.payload);
+    addIngredient: {
+      reducer: (
+        state,
+        action: { payload: { value: Ingredients; uniqueId: string } }
+      ) => {
+        if (action.payload.value.type === "bun") {
+          state.bun = action.payload.value;
+          return;
+        }
+        state.list.push({
+          ...action.payload.value,
+          uniqueId: action.payload.uniqueId,
+        });
+      },
+      prepare: (ingredient: Ingredients) => {
+        return { payload: { value: ingredient, uniqueId: uuid4() } };
+      },
     },
-    deleteIngredient(state, action) {
-      state.list.splice(action.payload, 1);
+    deleteIngredient(state, action: { payload: ConstructorItem }) {
+      state.list = state.list.filter(
+        (el) => el.uniqueId !== action.payload.uniqueId
+      );
     },
     sortIngredient(state, action: ActionSortIngredient) {
-      const element = state.list[action.payload.currentIndex];
-      state.list.splice(action.payload.currentIndex, 1);
-      state.list.splice(action.payload.newIndex, 0, element);
+      const currentIndex = state.list.findIndex(
+        (el) => el.uniqueId === action.payload.currentElement.uniqueId
+      );
+      const newIndex = state.list.findIndex(
+        (el) => el.uniqueId === action.payload.offsetElement.uniqueId
+      );
+      console.log(action.payload.currentElement, 'vv')
+      state.list.splice(currentIndex, 1);
+      state.list.splice(newIndex, 0, action.payload.currentElement);
     },
     clearContructor(state) {
       state.bun = initialState.bun;

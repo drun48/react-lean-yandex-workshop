@@ -2,30 +2,33 @@ import {
   ConstructorElement,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { Ingredients } from "../../../api/ingredients/types";
 import styles from "../burger-constructor.module.css";
 import { useDrag, useDrop } from "react-dnd";
 import { DragType } from "../../../constants";
 import { useAppDispatch } from "../../../services";
-import { sortIngredient } from "../../../services/constructor-ingredients/slice";
+import {
+  ConstructorItem,
+  sortIngredient,
+} from "../../../services/constructor-ingredients/slice";
 
 type Props = {
-  data: Ingredients;
-  index: number;
+  data: ConstructorItem;
   handleClose: () => void;
 };
 
-function DragConstructorElement({ data, index, handleClose }: Props) {
+function DragConstructorElement({ data, handleClose }: Props) {
   const dispatch = useAppDispatch();
   const [, dragRef] = useDrag({
     type: DragType.CardIngredientConstructor,
-    item: { index },
+    item: { data },
   });
 
   const [, dragDrop] = useDrop({
     accept: DragType.CardIngredientConstructor,
-    drop(item: { index: number }) {
-      dispatch(sortIngredient({ currentIndex: item.index, newIndex: index }));
+    drop(item: { data: ConstructorItem }) {
+      dispatch(
+        sortIngredient({ currentElement: item.data, offsetElement: data })
+      );
     },
   });
   return (

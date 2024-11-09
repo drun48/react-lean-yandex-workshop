@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import {
   addIngredient,
   clearContructor,
+  ConstructorItem,
   deleteIngredient,
   getConstructorIngredient,
 } from "../../services/constructor-ingredients/slice";
@@ -39,9 +40,9 @@ function BurgerConstructor() {
   }));
 
   const handlerDelete = useCallback(
-    (index: number) => {
+    (ingredient: ConstructorItem) => {
       return () => {
-        dispatch(deleteIngredient(index));
+        dispatch(deleteIngredient(ingredient));
       };
     },
     [dispatch]
@@ -89,13 +90,12 @@ function BurgerConstructor() {
           <ul
             className={[styles["burger-constructor__list"], "scroll"].join(" ")}
           >
-            {list.map((el, index) => {
+            {list.map((el) => {
               return (
-                <li className="pl-8" key={index}>
+                <li className="pl-8" key={el.uniqueId}>
                   <DragConstructorElement
                     data={el}
-                    handleClose={handlerDelete(index)}
-                    index={index}
+                    handleClose={handlerDelete(el)}
                   />
                 </li>
               );
