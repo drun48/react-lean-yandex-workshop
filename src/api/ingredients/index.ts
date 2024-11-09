@@ -1,9 +1,10 @@
 import { apiURL } from "../../constants";
+import { request } from "../../utils/request";
 import { Ingredients } from "./types";
 
 export async function getListIngredients() {
   try {
-    const res = await fetch(`${apiURL}/api/ingredients`);
+    const res = await request(`${apiURL}/api/ingredients`);
     const data = (await res.json()).data;
     return data.map((item: Ingredients & { _id: string }) => ({
       id: item._id,

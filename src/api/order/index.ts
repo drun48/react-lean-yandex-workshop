@@ -1,10 +1,11 @@
 import { apiURL } from "../../constants";
+import { request } from "../../utils/request";
 import { Ingredients } from "../ingredients/types";
 import { CreateOrder } from "./type";
 
 export async function createOrder(ingredients: Ingredients[]) {
   try {
-    const res = await fetch(`${apiURL}/api/orders`, {
+    const res = await request(`${apiURL}/api/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
