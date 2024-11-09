@@ -24,7 +24,7 @@ export const sliceOrder = createSlice({
         state.loading = true;
       })
       .addCase(createOrder.fulfilled, (state, action) => {
-        state.order = action.payload?.order.number;
+        state.order = action.payload?.order.number ?? null;
         state.loading = false;
       });
   },
