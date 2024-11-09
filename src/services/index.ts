@@ -2,12 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { sliceCurrentIngredient } from "./current-ingredient/slice";
 import { sliceIngredients } from "./ingredients/slice";
 import { sliceConstructorIngredient } from "./constructor-ingredients/slice";
+import { sliceOrder } from "./order/slice";
 import { configureStore, combineSlices } from "@reduxjs/toolkit";
 
 const rootReducer = combineSlices(
   sliceCurrentIngredient,
   sliceIngredients,
-  sliceConstructorIngredient
+  sliceConstructorIngredient,
+  sliceOrder
 );
 
 export const store = configureStore({

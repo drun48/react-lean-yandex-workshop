@@ -37,13 +37,21 @@ export const sliceConstructorIngredient = createSlice({
       state.list.splice(action.payload.currentIndex, 1);
       state.list.splice(action.payload.newIndex, 0, element);
     },
+    clearContructor(state) {
+      state.bun = initialState.bun;
+      state.list = initialState.list;
+    },
   },
   selectors: {
     getConstructorIngredient: (state) => state,
   },
 });
 
-export const { addIngredient, deleteIngredient, sortIngredient } =
-  sliceConstructorIngredient.actions;
+export const {
+  addIngredient,
+  deleteIngredient,
+  sortIngredient,
+  clearContructor,
+} = sliceConstructorIngredient.actions;
 export const { getConstructorIngredient } =
   sliceConstructorIngredient.selectors;

@@ -12,12 +12,14 @@ import { DragType } from "../../constants";
 import { useSelector } from "react-redux";
 import {
   addIngredient,
+  clearContructor,
   deleteIngredient,
   getConstructorIngredient,
 } from "../../services/constructor-ingredients/slice";
 import { Ingredients } from "../../api/ingredients/types";
 import { useAppDispatch } from "../../services";
 import DragConstructorElement from "./drag-constroctor-element";
+import { createOrder } from "../../services/order/actions";
 
 function BurgerConstructor() {
   const [isOpenModal, setOpenModal] = useState(false);
@@ -48,6 +50,12 @@ function BurgerConstructor() {
     }, 0);
     return sum + (bun?.price ?? 0) * 2;
   }, [list, bun]);
+
+  const openOrder = useCallback(() => {
+    dispatch(createOrder());
+    dispatch(clearContructor());
+    setOpenModal(true);
+  }, [dispatch, setOpenModal]);
 
   return (
     <>
@@ -112,9 +120,7 @@ function BurgerConstructor() {
               htmlType="button"
               type="primary"
               size="medium"
-              onClick={() => {
-                setOpenModal(true);
-              }}
+              onClick={openOrder}
             >
               Оформить заказ
             </Button>
