@@ -38,10 +38,7 @@ function TypeSection({
       <ul className={styles.container + " " + "ml-4 mt-6 mb-10"}>
         {listIngredientsType.map((ingredient) => (
           <li key={ingredient.id} onClick={() => handlerActive(ingredient)}>
-            <CardIngredient
-              data={ingredient}
-              count={1 * Math.round(Math.random())}
-            />
+            <CardIngredient data={ingredient} />
           </li>
         ))}
       </ul>

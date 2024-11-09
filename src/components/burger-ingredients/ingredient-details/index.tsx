@@ -20,7 +20,7 @@ function IngredientDetails() {
           <li key={index} className={styles["list__item"]}>
             <p className="text_type_main-default">{item.title}</p>
             <p className="text_type_digits-default">
-              {(data as Record<string, string | number>)[item.key]}
+              {(data as Record<string, string | number>)?.[item.key]}
             </p>
           </li>
         ))}

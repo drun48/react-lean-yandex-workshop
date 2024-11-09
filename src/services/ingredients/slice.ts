@@ -13,7 +13,7 @@ const initialState: initialState = {
 };
 
 export const sliceIngredients = createSlice({
-  name: "currentIngredient",
+  name: "ingredients",
   initialState,
   reducers: {},
   selectors: {
