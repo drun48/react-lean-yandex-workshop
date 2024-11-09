@@ -34,7 +34,7 @@ function CardIngredient({ data }: Props) {
   return (
     <article className={styles.card} ref={drag}>
       {count > 0 && <Counter count={count} size="default" extraClass="m-1" />}
-      <img src={data.image} className="pl-4 pr-4" />
+      <img src={data.image} className="pl-4 pr-4" alt="Икона ингредиента"/>
       <div className={styles.price}>
         <p className="text text_type_digits-default">{data.price}</p>
         <CurrencyIcon type="primary" />

@@ -13,7 +13,7 @@ function IngredientDetails() {
   const data = useSelector(getCurrentIngredient)
   return (
     <div className={styles["ingredient-details"]}>
-      <img src={data?.image_large} className="mb-4" />
+      <img src={data?.image_large} className="mb-4" alt="Икона ингредиента"/>
       <p className="text_type_main-medium">{data?.name}</p>
       <ul className={[styles["ingredient-details__list"], "mt-8"].join(" ")}>
         {info.map((item, index) => (
