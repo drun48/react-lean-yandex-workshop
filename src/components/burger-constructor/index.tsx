@@ -20,12 +20,16 @@ import { Ingredients } from "../../api/ingredients/types";
 import { useAppDispatch } from "../../services";
 import DragConstructorElement from "./drag-constroctor-element";
 import { createOrder } from "../../services/order/actions";
+import { getError, getLoading } from "../../services/order/slice";
+import Loader from "../loader";
 
 function BurgerConstructor() {
   const [isOpenModal, setOpenModal] = useState(false);
 
   const dispatch = useAppDispatch();
   const { bun, list } = useSelector(getConstructorIngredient);
+  const loadingOrder = useSelector(getLoading);
+  const errorOrder = useSelector(getError);
 
   const [, refDrop] = useDrop(() => ({
     accept: DragType.CardIngredient,
@@ -56,10 +60,10 @@ function BurgerConstructor() {
     dispatch(clearContructor());
     setOpenModal(true);
   }, [dispatch, setOpenModal]);
-
   return (
     <>
-      {isOpenModal && (
+      {loadingOrder && <Loader />}
+      {isOpenModal && !errorOrder && !loadingOrder && (
         <BaseModal handlerClose={setOpenModal}>
           <OrderDetails />
         </BaseModal>

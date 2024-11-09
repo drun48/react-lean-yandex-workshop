@@ -1,15 +1,10 @@
 import image from "../../../assets/img/done.svg";
+import { getOrder } from "../../../services/order/slice";
 import styles from "./order-details.module.css";
 import { useSelector } from "react-redux";
-import { getState } from "../../../services/order/slice";
-import Loader from "../../loader";
 
 function OrderDetails() {
-  const { order, loading } = useSelector(getState);
-
-  if (loading) {
-    return <Loader />;
-  }
+  const order = useSelector(getOrder);
 
   return (
     <div className={[styles["order-details"], "pt-20", "pb-20"].join(" ")}>
