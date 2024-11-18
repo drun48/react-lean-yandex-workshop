@@ -16,9 +16,14 @@
     display: flex;
 }
 
-.nav__item{
+.nav__item {
     display: flex;
     align-items: center;
     gap: 8px;
     cursor: pointer;
+    color: var(--gray-main);
+}
+
+.active-link {
+    color: var(--color-active-link);
 }

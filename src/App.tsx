@@ -1,20 +1,30 @@
-import { HTML5Backend } from "react-dnd-html5-backend";
-import AppHeader from "./components/app-header";
-import BurgerConstructor from "./components/burger-constructor";
-import BurgerIngredients from "./components/burger-ingredients";
-import { DndProvider } from "react-dnd";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BurgerConstructorPage,
+  ForgotPasswordPage,
+  IngredientsDetailPage,
+  LoginPage,
+  ProfilePage,
+  RegisterPage,
+  ResetPasswordPage,
+} from "./pages";
+import Layout from "./layouts";
 
 function App() {
   return (
-    <div className="container-main">
-      <AppHeader />
-      <main className="container">
-        <DndProvider backend={HTML5Backend}>
-          <BurgerIngredients />
-          <BurgerConstructor />
-        </DndProvider>
-      </main>
-    </div>
+    <Router>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<BurgerConstructorPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/ingredients/:id" element={<IngredientsDetailPage />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
