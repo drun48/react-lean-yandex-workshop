@@ -6,13 +6,16 @@ import {
 import styles from "./form-register.module.css";
 import { useFormState } from "../../hooks/form-state";
 import { FormEventHandler } from "react";
+import { register as registerAction } from "../../services/user/actions";
+import { useAppDispatch } from "../../services";
 
 function FormRegister() {
   const [form, setForm] = useFormState({ name: "", email: "", password: "" });
+  const dispatch = useAppDispatch();
 
   const register: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    console.log(form);
+    dispatch(registerAction(form));
   };
 
   return (

@@ -6,13 +6,16 @@ import {
 import { FormEventHandler } from "react";
 import { useFormState } from "../../hooks/form-state";
 import styles from "./form-login.module.css";
+import { useAppDispatch } from "../../services";
+import { login as loginAction } from "../../services/user/actions";
 
 function FormLogin() {
   const [form, setForm] = useFormState({ email: "", password: "" });
+  const dispatch = useAppDispatch();
 
   const register: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    console.log(form);
+    dispatch(loginAction(form));
   };
 
   return (
