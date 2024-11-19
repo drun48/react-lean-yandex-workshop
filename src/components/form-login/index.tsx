@@ -3,12 +3,12 @@ import {
   EmailInput,
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import styles from "./form-register.module.css";
-import { useFormState } from "../../hooks/form-state";
 import { FormEventHandler } from "react";
+import { useFormState } from "../../hooks/form-state";
+import styles from "./form-login.module.css";
 
-function FormRegister() {
-  const [form, setForm] = useFormState({ name: "", email: "", password: "" });
+function FormLogin() {
+  const [form, setForm] = useFormState({ email: "", password: "" });
 
   const register: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -17,12 +17,6 @@ function FormRegister() {
 
   return (
     <form onSubmit={register} className={styles.form}>
-      <Input
-        type={"text"}
-        placeholder={"Имя"}
-        onChange={setForm("name")}
-        value={form.name}
-      />
       <EmailInput
         onChange={setForm("email")}
         value={form.email}
@@ -37,10 +31,10 @@ function FormRegister() {
         icon="ShowIcon"
       />
       <Button htmlType={"submit"} type="primary" size="medium">
-        Зарегистрироваться
+        Войти
       </Button>
     </form>
   );
 }
 
-export default FormRegister;
+export default FormLogin;

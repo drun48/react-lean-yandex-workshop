@@ -1,20 +1,27 @@
-.container-register {
+.login {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
     gap: 80px;
+    width: 100%;
 }
 
-.register-form{
+.login__form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
 }
 
-.container-transition{
+.container-transition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.container-transition__item {
     display: flex;
     align-items: center;
     gap: 8px;
