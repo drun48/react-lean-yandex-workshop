@@ -46,7 +46,7 @@ function AppHeader() {
             <p className="text_type_main-default">Лента заказов</p>
           </NavLink>
         </nav>
-        <Logo />
+        <Logo className={styles.logo}/>
         <NavLink
           to="/profile"
           className={({ isActive }) =>
