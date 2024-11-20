@@ -55,7 +55,6 @@ export const sliceConstructorIngredient = createSlice({
       const newIndex = state.list.findIndex(
         (el) => el.uniqueId === action.payload.offsetElement.uniqueId
       );
-      console.log(action.payload.currentElement, 'vv')
       state.list.splice(currentIndex, 1);
       state.list.splice(newIndex, 0, action.payload.currentElement);
     },

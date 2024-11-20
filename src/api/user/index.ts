@@ -89,7 +89,6 @@ export async function refreshToken() {
 export async function getUser() {
   try {
     const res = await requestAuthToken(`${apiURL}/api/auth/user`);
-    console.log(res, 'cvcxvc')
     const data = (await res.json()) as { user: DTOAnswerUser };
     return data;
   } catch (e) {
