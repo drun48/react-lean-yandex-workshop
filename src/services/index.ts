@@ -3,18 +3,20 @@ import { sliceCurrentIngredient } from "./current-ingredient/slice";
 import { sliceIngredients } from "./ingredients/slice";
 import { sliceConstructorIngredient } from "./constructor-ingredients/slice";
 import { sliceOrder } from "./order/slice";
+import { sliceUser } from "./user/slice";
 import { configureStore, combineSlices } from "@reduxjs/toolkit";
 
 const rootReducer = combineSlices(
   sliceCurrentIngredient,
   sliceIngredients,
   sliceConstructorIngredient,
-  sliceOrder
+  sliceOrder,
+  sliceUser
 );
 
 export const store = configureStore({
   reducer: rootReducer,
-  devTools: process.env.NODE_ENV !== 'production'
+  devTools: process.env.NODE_ENV !== "production",
 });
 
 export type RootState = ReturnType<typeof store.getState>;

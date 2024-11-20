@@ -1,24 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { login, register } from "./actions";
 import { DTOAnswerUser } from "../../api/user/type";
-import { act } from "react-dom/test-utils";
 
 type InitialState = {
   user: null | DTOAnswerUser;
   loading: boolean;
   error: boolean;
+  isAuthChecked: boolean;
 };
 
 const initialState: InitialState = {
   user: null,
   loading: false,
   error: false,
+  isAuthChecked: false,
 };
 
-export const sliceOrder = createSlice({
+export const sliceUser= createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    setIsAuthChecked(state, action) {
+      state.isAuthChecked = action.payload;
+    },
+    setUser(state, action) {
+      state.user = action.payload;
+    },
+  },
+  selectors: {
+    getUser: (state) => state.user,
+    getIsAuthChecked: (state) => state.isAuthChecked,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(register.pending, (state) => {
@@ -28,7 +40,7 @@ export const sliceOrder = createSlice({
         state.loading = false;
         state.user = action.payload ?? null;
       })
-      .addCase(login.fulfilled, (state) => {
+      .addCase(login.pending, (state) => {
         state.loading = true;
       })
       .addCase(login.fulfilled, (state, action) => {
@@ -36,3 +48,6 @@ export const sliceOrder = createSlice({
       });
   },
 });
+
+export const { setIsAuthChecked, setUser } = sliceUser.actions;
+export const { getUser, getIsAuthChecked } = sliceUser.selectors;
