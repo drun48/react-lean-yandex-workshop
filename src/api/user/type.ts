@@ -25,6 +25,11 @@ export type DTOAnswerForogotPassword = {
   message: string;
 };
 
+export type DTOResetPassword = {
+  password:string,
+  token:string
+}
+
 export type DTOAnswerRegister = DTOAnswerToken & { user: DTOAnswerUser };
 export type DTOAnswerLogin = DTOAnswerToken & { user: DTOAnswerUser };
 export type DTOEditUser = Partial<DTORegister>;

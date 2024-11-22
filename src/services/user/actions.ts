@@ -1,5 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { DTOEditUser, DTOLogin, DTORegister } from "../../api/user/type";
+import {
+  DTOEditUser,
+  DTOLogin,
+  DTORegister,
+  DTOResetPassword,
+} from "../../api/user/type";
 import {
   getUser,
   login as userLogin,
@@ -7,6 +12,7 @@ import {
   logout as userLogout,
   editUser,
   forgotPassword as userForgotPassword,
+  resetPassword as UserResetPassword,
 } from "../../api/user";
 import { setIsActiveforgotPassword, setIsAuthChecked, setUser } from "./slice";
 import { RootState } from "..";
@@ -69,4 +75,16 @@ export const forgotPassword = createAsyncThunk<
     localStorage.setItem(isActiveforgotPassword, "true");
   }
   dispatch(setIsActiveforgotPassword(!!res?.success));
+});
+
+export const resetPassword = createAsyncThunk<
+  void,
+  DTOResetPassword,
+  { state: RootState }
+>("user/reset-password", async (formData, { dispatch }) => {
+  const res = await UserResetPassword(formData);
+  if (res?.success) {
+    localStorage.removeItem(isActiveforgotPassword);
+  }
+  dispatch(setIsActiveforgotPassword(!res?.success));
 });

@@ -133,3 +133,18 @@ export async function forgotPassword(email: string) {
     console.error(e);
   }
 }
+
+export async function resetPassword(formData: DTOResetPassword) {
+  try {
+    const res = await request(`${apiURL}/api/password-reset/reset`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(formData),
+    });
+    return (await res.json()) as DTOAnswerForogotPassword;
+  } catch (e) {
+    console.error(e);
+  }
+}
