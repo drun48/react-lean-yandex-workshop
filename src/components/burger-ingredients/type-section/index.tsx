@@ -27,6 +27,7 @@ function TypeSection({ title, listIngredients, type }: Props) {
             <Link
               to={`/ingredients/${ingredient.id}`}
               state={{ backgroundLocation: location }}
+              className=""
             >
               <CardIngredient data={ingredient} />
             </Link>

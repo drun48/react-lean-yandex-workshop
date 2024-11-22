@@ -12,5 +12,5 @@
 .burger-ingredients__items {
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
 }
