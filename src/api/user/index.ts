@@ -8,6 +8,7 @@ import {
   DTOAnswerRegister,
   DTOAnswerToken,
   DTOAnswerUser,
+  DTOEditUser,
   DTOLogin,
   DTORegister,
 } from "./type";
@@ -50,14 +51,15 @@ export async function login(formData: DTOLogin) {
   }
 }
 
-export async function logout(refreshToken: string) {
+export async function logout() {
   try {
+    const refreshToken = localStorage.getItem(Token.refreshToken);
     const res = await request(`${apiURL}/api/auth/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
-      body: JSON.stringify({ tokem: refreshToken }),
+      body: JSON.stringify({ token: refreshToken }),
     });
     const data = await res.json();
     localStorage.removeItem(Token.accessToken);
@@ -98,5 +100,20 @@ export async function getUser() {
     localStorage.removeItem(Token.accessToken);
     localStorage.removeItem(Token.refreshToken);
     throw e;
+  }
+}
+
+export async function editUser(formData: DTOEditUser) {
+  try {
+    const res = await requestAuthToken(`${apiURL}/api/auth/user`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(formData),
+    });
+    return (await res.json()) as { user: DTOAnswerUser };
+  } catch (e) {
+    console.error(e);
   }
 }

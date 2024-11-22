@@ -7,6 +7,7 @@ import {
   ProfilePage,
   RegisterPage,
   ResetPasswordPage,
+  LayoutProfile,
 } from "./pages";
 import Layout from "./layouts";
 import {
@@ -48,10 +49,12 @@ function App() {
             path="/reset-password"
             element={<ProtectedRouteAuth element={<ResetPasswordPage />} />}
           />
-          <Route
-            path="/profile"
-            element={<ProtectedRouteAuth element={<ProfilePage />} />}
-          />
+          <Route element={<LayoutProfile />}>
+            <Route
+              path="/profile"
+              element={<ProtectedRouteAuth element={<ProfilePage />} />}
+            />
+          </Route>
           <Route
             path="/ingredients/:id"
             element={<ProtectedRouteAuth element={<IngredientsDetailPage />} />}

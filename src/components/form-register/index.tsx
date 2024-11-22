@@ -10,7 +10,7 @@ import { register as registerAction } from "../../services/user/actions";
 import { useAppDispatch } from "../../services";
 
 function FormRegister() {
-  const [form, setForm] = useFormState({ name: "", email: "", password: "" });
+  const [form, changeDataForm] = useFormState({ name: "", email: "", password: "" });
   const dispatch = useAppDispatch();
 
   const register: FormEventHandler<HTMLFormElement> = (e) => {
@@ -23,11 +23,11 @@ function FormRegister() {
       <Input
         type={"text"}
         placeholder={"Имя"}
-        onChange={setForm("name")}
+        onChange={changeDataForm("name")}
         value={form.name}
       />
       <EmailInput
-        onChange={setForm("email")}
+        onChange={changeDataForm("email")}
         value={form.email}
         name={"email"}
         isIcon={false}
@@ -35,7 +35,7 @@ function FormRegister() {
       <Input
         type={"password"}
         placeholder={"Пароль"}
-        onChange={setForm("password")}
+        onChange={changeDataForm("password")}
         value={form.password}
         icon="ShowIcon"
       />

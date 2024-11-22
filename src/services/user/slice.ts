@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, register } from "./actions";
+import { edit, login, register } from "./actions";
 import { DTOAnswerUser } from "../../api/user/type";
 
 type InitialState = {
@@ -16,7 +16,7 @@ const initialState: InitialState = {
   isAuthChecked: false,
 };
 
-export const sliceUser= createSlice({
+export const sliceUser = createSlice({
   name: "user",
   initialState,
   reducers: {
@@ -44,6 +44,12 @@ export const sliceUser= createSlice({
         state.loading = true;
       })
       .addCase(login.fulfilled, (state, action) => {
+        state.user = action.payload ?? null;
+      })
+      .addCase(edit.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(edit.fulfilled, (state, action) => {
         state.user = action.payload ?? null;
       });
   },

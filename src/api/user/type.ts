@@ -22,3 +22,4 @@ export type DTOAnswerUser = {
 
 export type DTOAnswerRegister = DTOAnswerToken & { user: DTOAnswerUser };
 export type DTOAnswerLogin = DTOAnswerToken & { user: DTOAnswerUser };
+export type DTOEditUser = Partial<DTORegister>

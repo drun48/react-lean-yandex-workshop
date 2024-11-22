@@ -73,6 +73,10 @@ a {
   text-decoration: none;
 }
 
+.active-link {
+  color: var(--color-active-link);
+}
+
 .link-click{
   color: var(--color-link);
 }

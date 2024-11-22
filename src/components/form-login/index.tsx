@@ -10,18 +10,18 @@ import { useAppDispatch } from "../../services";
 import { login as loginAction } from "../../services/user/actions";
 
 function FormLogin() {
-  const [form, setForm] = useFormState({ email: "", password: "" });
+  const [form, changeDataForm] = useFormState({ email: "", password: "" });
   const dispatch = useAppDispatch();
 
-  const register: FormEventHandler<HTMLFormElement> = (e) => {
+  const login: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     dispatch(loginAction(form));
   };
 
   return (
-    <form onSubmit={register} className={styles.form}>
+    <form onSubmit={login} className={styles.form}>
       <EmailInput
-        onChange={setForm("email")}
+        onChange={changeDataForm("email")}
         value={form.email}
         name={"email"}
         isIcon={false}
@@ -29,7 +29,7 @@ function FormLogin() {
       <Input
         type={"password"}
         placeholder={"Пароль"}
-        onChange={setForm("password")}
+        onChange={changeDataForm("password")}
         value={form.password}
         icon="ShowIcon"
       />

@@ -16,14 +16,9 @@ function AppHeader() {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              [
-                styles["nav__item"],
-                "pr-5",
-                "pl-5",
-                "pt-4",
-                "pb-4",
-                isActive ? styles["active-link"] : "disabled",
-              ].join(" ")
+              [styles["nav__item"], isActive ? "active-link" : "disabled"].join(
+                " "
+              )
             }
           >
             <BurgerIcon type="primary" />
@@ -32,21 +27,16 @@ function AppHeader() {
           <NavLink
             to="/order-feed"
             className={({ isActive }) =>
-              [
-                styles["nav__item"],
-                "pr-5",
-                "pl-5",
-                "pt-4",
-                "pb-4",
-                isActive ? styles["active-link"] : "disabled",
-              ].join(" ")
+              [styles["nav__item"], isActive ? "active-link" : "disabled"].join(
+                " "
+              )
             }
           >
             <ListIcon type="primary" />
             <p className="text_type_main-default">Лента заказов</p>
           </NavLink>
         </nav>
-        <Logo className={styles.logo}/>
+        <Logo className={styles.logo} />
         <NavLink
           to="/profile"
           className={({ isActive }) =>
@@ -56,7 +46,7 @@ function AppHeader() {
               "pl-5",
               "pt-4",
               "pb-4",
-              isActive ? styles["active-link"] : "disabled",
+              isActive ? "active-link" : "disabled",
             ].join(" ")
           }
         >

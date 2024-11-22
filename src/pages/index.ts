@@ -5,6 +5,7 @@ import LoginPage from "./login";
 import ProfilePage from "./profile";
 import RegisterPage from "./register";
 import ResetPasswordPage from "./reset-password";
+import LayoutProfile from "./profile/layout-profile";
 
 export {
   BurgerConstructorPage,
@@ -14,4 +15,5 @@ export {
   ProfilePage,
   RegisterPage,
   ResetPasswordPage,
+  LayoutProfile,
 };

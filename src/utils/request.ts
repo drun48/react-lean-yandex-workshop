@@ -17,6 +17,7 @@ export const requestAuth = <T extends (...args: any[]) => any>(
       ...options,
       headers: { ...options?.headers, Authorization: accessToken ?? '' },
     };
+    console.log(authOptions, options)
     const res = await request(url, authOptions);
     if (res.status === 401) {
       await callBackRefreshToken();
