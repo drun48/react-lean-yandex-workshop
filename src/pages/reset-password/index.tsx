@@ -1,8 +1,19 @@
 import FormResetPassword from "../../components/form-reset-password";
 import styles from "./reset-password.module.css";
 import HelperNavigation from "../../components/helper-navigation";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { isActiveforgotPassword } from "../../constants";
 
 function ResetPasswordPage() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem(isActiveforgotPassword)) {
+      navigate("/forgot-password");
+    }
+  }, [navigate]);
+
   return (
     <section className={styles["reset-password"]}>
       <div className={styles["reset-password__form"]}>
