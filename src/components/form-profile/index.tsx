@@ -7,7 +7,7 @@ import { useFormState } from "../../hooks/form-state";
 import { useAppDispatch } from "../../services";
 import styles from "./form-profile.module.css";
 import { useSelector } from "react-redux";
-import { FormEventHandler, useEffect } from "react";
+import { FormEventHandler, useEffect, useMemo } from "react";
 import { getUser } from "../../services/user/slice";
 import { edit } from "../../services/user/actions";
 
@@ -25,13 +25,12 @@ export default function FormProfile() {
     if (user) {
       setForm({ ...user, password: "" });
     }
-  }, [user, setForm]);
+  }, [setForm, user]);
 
   const dispatch = useAppDispatch();
 
-  const editUser:FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault()
-    const changes = Object.entries(form).reduce((res, [key, value]) => {
+  const changes = useMemo(() => {
+    return Object.entries(form).reduce((res, [key, value]) => {
       {
         if (value && value !== (user as Record<string, string>)[key]) {
           res[key] = value;
@@ -39,6 +38,14 @@ export default function FormProfile() {
         return res;
       }
     }, {} as Record<string, string>);
+  }, [form, user]);
+
+  const isChages = useMemo(() => {
+    return Object.values(changes).find((el) => !!el);
+  }, [changes]);
+
+  const editUser: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
     dispatch(edit(changes));
   };
 
@@ -72,19 +79,21 @@ export default function FormProfile() {
         value={form.password}
         icon="EditIcon"
       />
-      <footer>
-        <Button
-          htmlType="button"
-          type="secondary"
-          size="medium"
-          onClick={cancel}
-        >
-          Отмена
-        </Button>
-        <Button htmlType="submit" type="primary" size="medium">
-          Сохранить
-        </Button>
-      </footer>
+      {isChages && (
+        <footer>
+          <Button
+            htmlType="button"
+            type="secondary"
+            size="medium"
+            onClick={cancel}
+          >
+            Отмена
+          </Button>
+          <Button htmlType="submit" type="primary" size="medium">
+            Сохранить
+          </Button>
+        </footer>
+      )}
     </form>
   );
 }
