@@ -1,8 +1,6 @@
 import { apiURL, Token } from "../../constants";
 import { debounce } from "../../utils/debounce";
 import { request, requestAuth } from "../../utils/request";
-import { store } from "../../services/index";
-import { setUser } from "../../services/user/slice";
 import {
   DTOAnswerForogotPassword,
   DTOAnswerLogin,
@@ -12,6 +10,7 @@ import {
   DTOEditUser,
   DTOLogin,
   DTORegister,
+  DTOResetPassword,
 } from "./type";
 
 export const requestAuthToken = requestAuth(debounce(refreshToken));
@@ -87,7 +86,6 @@ export async function refreshToken() {
   } catch (e) {
     localStorage.removeItem(Token.accessToken);
     localStorage.removeItem(Token.refreshToken);
-    store.dispatch(setUser(null));
     console.error(e);
   }
 }

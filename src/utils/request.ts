@@ -12,17 +12,20 @@ export const requestAuth = <T extends (...args: any[]) => any>(
   callBackRefreshToken: T
 ) => {
   const refreshToken: TypeRequest = async (url, options) => {
-    const accessToken = localStorage.getItem(Token.accessToken);
-    const authOptions = {
-      ...options,
-      headers: { ...options?.headers, Authorization: accessToken ?? '' },
-    };
-    const res = await request(url, authOptions);
-    if (res.status === 401) {
-      await callBackRefreshToken();
-      return await request(url, options);
-    } else {
-      return res;
+    try {
+      const accessToken = localStorage.getItem(Token.accessToken);
+      const authOptions = {
+        ...options,
+        headers: { ...options?.headers, Authorization: accessToken ?? "" },
+      };
+      return request(url, authOptions);
+    } catch (e) {
+      const errorMessage = e as string;
+      if (errorMessage.includes("401") || errorMessage.includes("403")) {
+        await callBackRefreshToken();
+        return request(url, options);
+      }
+      throw e;
     }
   };
   return refreshToken;

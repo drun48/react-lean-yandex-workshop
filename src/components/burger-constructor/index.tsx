@@ -23,6 +23,8 @@ import DragConstructorElement from "./drag-constroctor-element";
 import { createOrder } from "../../services/order/actions";
 import { getError, getLoading } from "../../services/order/slice";
 import Loader from "../loader";
+import { getUser } from "../../services/user/slice";
+import { useNavigate } from "react-router-dom";
 
 function BurgerConstructor() {
   const [isOpenModal, setOpenModal] = useState(false);
@@ -31,6 +33,8 @@ function BurgerConstructor() {
   const { bun, list } = useSelector(getConstructorIngredient);
   const loadingOrder = useSelector(getLoading);
   const errorOrder = useSelector(getError);
+  const user = useSelector(getUser);
+  const navigate = useNavigate();
 
   const [, refDrop] = useDrop(() => ({
     accept: DragType.CardIngredient,
@@ -57,10 +61,14 @@ function BurgerConstructor() {
   }, [list, bun]);
 
   const openOrder = useCallback(() => {
+    if (!user) {
+      navigate("/login");
+      return
+    }
     dispatch(createOrder());
     dispatch(clearContructor());
     setOpenModal(true);
-  }, [dispatch, setOpenModal]);
+  }, [dispatch, navigate, user]);
   return (
     <>
       {loadingOrder && <Loader />}
