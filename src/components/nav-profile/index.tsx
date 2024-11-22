@@ -6,6 +6,7 @@ function NavProfile() {
     <div className={styles["nav-profile"]}>
       <NavLink
         to="/profile"
+        end
         className={({ isActive }) =>
           ["text_type_main-medium", isActive ? "active-link" : "disabled"].join(
             " "
@@ -15,7 +16,7 @@ function NavProfile() {
         Профиль
       </NavLink>
       <NavLink
-        to="/profile/history"
+        to="profile/orders"
         className={({ isActive }) =>
           ["text_type_main-medium", isActive ? "active-link" : "disabled"].join(
             " "

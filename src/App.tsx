@@ -8,6 +8,7 @@ import {
   RegisterPage,
   ResetPasswordPage,
   LayoutProfile,
+  HistoryOrderPage,
 } from "./pages";
 import Layout from "./layouts";
 import {
@@ -59,6 +60,10 @@ function App() {
             <Route
               path="/profile"
               element={<ProtectedRouteAuth element={<ProfilePage />} />}
+            />
+            <Route
+              path="/profile/orders"
+              element={<ProtectedRouteAuth element={<HistoryOrderPage />} />}
             />
           </Route>
           <Route path="/ingredients/:id" element={<IngredientsDetailPage />} />

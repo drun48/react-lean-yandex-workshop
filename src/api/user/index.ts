@@ -98,8 +98,7 @@ export async function getUser() {
     const data = (await res.json()) as { user: DTOAnswerUser };
     return data;
   } catch (e) {
-    localStorage.removeItem(Token.accessToken);
-    localStorage.removeItem(Token.refreshToken);
+    console.error(e);
     throw e;
   }
 }
