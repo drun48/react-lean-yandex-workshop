@@ -5,10 +5,11 @@ import {
   setIsActiveforgotPassword,
 } from "../../services/user/slice";
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../services";
 import { isActiveforgotPassword as isActiveforgotPasswordName } from "../../constants";
 import styles from "./forgot-password.module.css";
+import HelperNavigation from "../../components/helper-navigation";
 
 function ForgotPasswordPage() {
   const isActiveforgotPassword = useSelector(getIsActiveforgotPassword);
@@ -35,12 +36,11 @@ function ForgotPasswordPage() {
         <h2 className="text_type_main-medium">Восстановление пароля</h2>
         <FormForgotPassword />
       </div>
-      <footer>
-        <p className="text_type_main-default disabled">Вспомнили пароль?</p>
-        <Link to={"/login"} className="link-click text_type_main-default">
-          Войти
-        </Link>
-      </footer>
+      <HelperNavigation
+        title="Уже зарегистрированы?"
+        nameLink="Войти"
+        link="/login"
+      />
     </section>
   );
 }
