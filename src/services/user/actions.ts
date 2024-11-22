@@ -6,9 +6,11 @@ import {
   register as userRegister,
   logout as userLogout,
   editUser,
+  forgotPassword as userForgotPassword,
 } from "../../api/user";
-import { setIsAuthChecked, setUser } from "./slice";
+import { setIsActiveforgotPassword, setIsAuthChecked, setUser } from "./slice";
 import { RootState } from "..";
+import { isActiveforgotPassword } from "../../constants";
 
 export const register = createAsyncThunk(
   "user/register",
@@ -53,4 +55,18 @@ export const logout = createAsyncThunk<
 
 export const edit = createAsyncThunk("user/edit", async (form: DTOEditUser) => {
   return (await editUser(form))?.user;
+});
+
+export const forgotPassword = createAsyncThunk<
+  void,
+  string,
+  {
+    state: RootState;
+  }
+>("user/forgot-password", async (email, { dispatch }) => {
+  const res = await userForgotPassword(email);
+  if (res?.success) {
+    localStorage.setItem(isActiveforgotPassword, "true");
+  }
+  dispatch(setIsActiveforgotPassword(!!res?.success));
 });

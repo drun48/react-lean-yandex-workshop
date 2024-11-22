@@ -7,6 +7,7 @@ type InitialState = {
   loading: boolean;
   error: boolean;
   isAuthChecked: boolean;
+  isActiveforgotPassword: boolean;
 };
 
 const initialState: InitialState = {
@@ -14,6 +15,7 @@ const initialState: InitialState = {
   loading: false,
   error: false,
   isAuthChecked: false,
+  isActiveforgotPassword: false,
 };
 
 export const sliceUser = createSlice({
@@ -26,10 +28,14 @@ export const sliceUser = createSlice({
     setUser(state, action) {
       state.user = action.payload;
     },
+    setIsActiveforgotPassword(state, action) {
+      state.isActiveforgotPassword = action.payload;
+    },
   },
   selectors: {
     getUser: (state) => state.user,
     getIsAuthChecked: (state) => state.isAuthChecked,
+    getIsActiveforgotPassword: (state) => state.isActiveforgotPassword,
   },
   extraReducers: (builder) => {
     builder
@@ -55,5 +61,7 @@ export const sliceUser = createSlice({
   },
 });
 
-export const { setIsAuthChecked, setUser } = sliceUser.actions;
-export const { getUser, getIsAuthChecked } = sliceUser.selectors;
+export const { setIsAuthChecked, setUser, setIsActiveforgotPassword } =
+  sliceUser.actions;
+export const { getUser, getIsAuthChecked, getIsActiveforgotPassword } =
+  sliceUser.selectors;

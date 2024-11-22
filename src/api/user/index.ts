@@ -4,6 +4,7 @@ import { request, requestAuth } from "../../utils/request";
 import { store } from "../../services/index";
 import { setUser } from "../../services/user/slice";
 import {
+  DTOAnswerForogotPassword,
   DTOAnswerLogin,
   DTOAnswerRegister,
   DTOAnswerToken,
@@ -113,6 +114,21 @@ export async function editUser(formData: DTOEditUser) {
       body: JSON.stringify(formData),
     });
     return (await res.json()) as { user: DTOAnswerUser };
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export async function forgotPassword(email: string) {
+  try {
+    const res = await request(`${apiURL}/api/password-reset`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({ email }),
+    });
+    return (await res.json()) as DTOAnswerForogotPassword;
   } catch (e) {
     console.error(e);
   }

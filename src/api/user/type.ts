@@ -20,6 +20,11 @@ export type DTOAnswerUser = {
   name: string;
 };
 
+export type DTOAnswerForogotPassword = {
+  success: boolean;
+  message: string;
+};
+
 export type DTOAnswerRegister = DTOAnswerToken & { user: DTOAnswerUser };
 export type DTOAnswerLogin = DTOAnswerToken & { user: DTOAnswerUser };
-export type DTOEditUser = Partial<DTORegister>
+export type DTOEditUser = Partial<DTORegister>;

@@ -29,10 +29,7 @@ function App() {
     <Router>
       <Routes>
         <Route element={<Layout />}>
-          <Route
-            path="/"
-            element={<ProtectedRouteAuth element={<BurgerConstructorPage />} />}
-          />
+          <Route path="/" element={<BurgerConstructorPage />} />
           <Route
             path="/login"
             element={<ProtectedRouteUnAuth element={<LoginPage />} />}
@@ -43,11 +40,11 @@ function App() {
           />
           <Route
             path="/forgot-password"
-            element={<ProtectedRouteAuth element={<ForgotPasswordPage />} />}
+            element={<ProtectedRouteUnAuth element={<ForgotPasswordPage />} />}
           />
           <Route
             path="/reset-password"
-            element={<ProtectedRouteAuth element={<ResetPasswordPage />} />}
+            element={<ProtectedRouteUnAuth element={<ResetPasswordPage />} />}
           />
           <Route element={<LayoutProfile />}>
             <Route
@@ -55,10 +52,7 @@ function App() {
               element={<ProtectedRouteAuth element={<ProfilePage />} />}
             />
           </Route>
-          <Route
-            path="/ingredients/:id"
-            element={<ProtectedRouteAuth element={<IngredientsDetailPage />} />}
-          />
+          <Route path="/ingredients/:id" element={<IngredientsDetailPage />} />
         </Route>
       </Routes>
     </Router>
