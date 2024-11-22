@@ -6,9 +6,12 @@ import styles from "./profile.module.css";
 function LayoutProfile() {
   return (
     <section className={styles["profile-page"]}>
-      <div className={styles.nav}>
-        <NavProfile />
-        <Logout />
+      <div className={styles["container-nav"]}>
+        <div className={styles.nav}>
+          <NavProfile />
+          <Logout />
+        </div>
+        <footer id="profile-page-footer" />
       </div>
       <Outlet />
     </section>

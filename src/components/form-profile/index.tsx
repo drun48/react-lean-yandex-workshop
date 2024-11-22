@@ -57,19 +57,20 @@ export default function FormProfile() {
         placeholder={"Имя"}
         onChange={changeDataForm("name")}
         value={form.name}
+        icon="EditIcon"
       />
       <EmailInput
         onChange={changeDataForm("email")}
         value={form.email}
         name={"email"}
-        isIcon={false}
+        isIcon={true}
       />
       <Input
         type={"password"}
         placeholder={"Пароль"}
         onChange={changeDataForm("password")}
         value={form.password}
-        icon="ShowIcon"
+        icon="EditIcon"
       />
       <footer>
         <Button
