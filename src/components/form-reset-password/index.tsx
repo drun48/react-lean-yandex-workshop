@@ -29,7 +29,7 @@ export default function FormResetPassword() {
       <Input
         type={"text"}
         placeholder={"Введите код из письма"}
-        onChange={changeDataForm("name")}
+        onChange={changeDataForm("token")}
         value={form.token}
       />
       <Button htmlType={"submit"} type="primary" size="medium">
