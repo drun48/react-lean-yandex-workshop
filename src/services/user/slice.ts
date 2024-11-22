@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { edit, login, register } from "./actions";
+import {
+  edit,
+  forgotPassword,
+  login,
+  register,
+  resetPassword,
+} from "./actions";
 import { DTOAnswerUser } from "../../api/user/type";
 
 type InitialState = {
@@ -36,6 +42,7 @@ export const sliceUser = createSlice({
     getUser: (state) => state.user,
     getIsAuthChecked: (state) => state.isAuthChecked,
     getIsActiveforgotPassword: (state) => state.isActiveforgotPassword,
+    getLoading: (state) => state.loading,
   },
   extraReducers: (builder) => {
     builder
@@ -57,11 +64,29 @@ export const sliceUser = createSlice({
       })
       .addCase(edit.fulfilled, (state, action) => {
         state.user = action.payload ?? null;
+      })
+      .addCase(forgotPassword.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(forgotPassword.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isActiveforgotPassword = !!action.payload;
+      })
+      .addCase(resetPassword.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(resetPassword.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isActiveforgotPassword = !!action.payload;
       });
   },
 });
 
 export const { setIsAuthChecked, setUser, setIsActiveforgotPassword } =
   sliceUser.actions;
-export const { getUser, getIsAuthChecked, getIsActiveforgotPassword } =
-  sliceUser.selectors;
+export const {
+  getUser,
+  getIsAuthChecked,
+  getIsActiveforgotPassword,
+  getLoading,
+} = sliceUser.selectors;

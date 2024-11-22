@@ -63,28 +63,25 @@ export const edit = createAsyncThunk("user/edit", async (form: DTOEditUser) => {
   return (await editUser(form))?.user;
 });
 
-export const forgotPassword = createAsyncThunk<
-  void,
-  string,
-  {
-    state: RootState;
+export const forgotPassword = createAsyncThunk<boolean, string>(
+  "user/forgot-password",
+  async (email) => {
+    const res = await userForgotPassword(email);
+    if (res?.success) {
+      localStorage.setItem(isActiveforgotPassword, "true");
+      return true;
+    }
+    return !!res?.success;
   }
->("user/forgot-password", async (email, { dispatch }) => {
-  const res = await userForgotPassword(email);
-  if (res?.success) {
-    localStorage.setItem(isActiveforgotPassword, "true");
-  }
-  dispatch(setIsActiveforgotPassword(!!res?.success));
-});
+);
 
-export const resetPassword = createAsyncThunk<
-  void,
-  DTOResetPassword,
-  { state: RootState }
->("user/reset-password", async (formData, { dispatch }) => {
-  const res = await UserResetPassword(formData);
-  if (res?.success) {
-    localStorage.removeItem(isActiveforgotPassword);
+export const resetPassword = createAsyncThunk<boolean, DTOResetPassword>(
+  "user/reset-password",
+  async (formData) => {
+    const res = await UserResetPassword(formData);
+    if (res?.success) {
+      localStorage.removeItem(isActiveforgotPassword);
+    }
+    return !res?.success;
   }
-  dispatch(setIsActiveforgotPassword(!res?.success));
-});
+);
