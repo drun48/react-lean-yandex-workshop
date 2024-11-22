@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { getList } from "./actions";
 import { Ingredients } from "../../api/ingredients/types";
 
@@ -32,3 +32,10 @@ export const sliceIngredients = createSlice({
 });
 
 export const { getStateIngredients } = sliceIngredients.selectors;
+
+export const getIngredientsById = createSelector(
+  [getStateIngredients, (idObj: { id: string }) => idObj.id],
+  (state, id) => {
+    return state.list.find((el) => el.id === id);
+  }
+);

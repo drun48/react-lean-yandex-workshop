@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import {
   BurgerConstructorPage,
   ForgotPasswordPage,
@@ -17,17 +17,26 @@ import {
 import { useEffect } from "react";
 import { checAuth } from "./services/user/actions";
 import { useAppDispatch } from "./services";
+import BaseModal from "./components/base-modal";
+import IngredientDetails from "./components/burger-ingredients/ingredient-details";
 
 function App() {
   const dispatch = useAppDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const state = location.state as { backgroundLocation?: Location };
 
   useEffect(() => {
     dispatch(checAuth());
   }, [dispatch]);
 
+  const handleModalClose = () => {
+    navigate(-1);
+  };
+
   return (
-    <Router>
-      <Routes>
+    <>
+      <Routes location={state?.backgroundLocation || location}>
         <Route element={<Layout />}>
           <Route path="/" element={<BurgerConstructorPage />} />
           <Route
@@ -55,7 +64,23 @@ function App() {
           <Route path="/ingredients/:id" element={<IngredientsDetailPage />} />
         </Route>
       </Routes>
-    </Router>
+
+      {state?.backgroundLocation && (
+        <Routes>
+          <Route
+            path="/ingredients/:id"
+            element={
+              <BaseModal
+                handlerClose={handleModalClose}
+                title="Детали ингредиента"
+              >
+                <IngredientDetails />
+              </BaseModal>
+            }
+          />
+        </Routes>
+      )}
+    </>
   );
 }
 
