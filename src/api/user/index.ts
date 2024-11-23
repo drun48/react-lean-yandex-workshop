@@ -54,7 +54,7 @@ export async function login(formData: DTOLogin) {
 export async function logout() {
   try {
     const refreshToken = localStorage.getItem(Token.refreshToken);
-    const res = await request(`${apiURL}/api/auth/logout`, {
+    const res = await requestAuthToken(`${apiURL}/api/auth/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -78,7 +78,7 @@ export async function refreshToken() {
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
-      body: JSON.stringify({ tokem: refreshToken }),
+      body: JSON.stringify({ token: refreshToken }),
     });
     const data = (await res.json()) as DTOAnswerToken;
     localStorage.setItem(Token.accessToken, data.accessToken);

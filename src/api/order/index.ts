@@ -15,6 +15,6 @@ export async function createOrder(ingredients: Ingredients[]) {
     const data = (await res.json()) as CreateOrder;
     return data;
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }

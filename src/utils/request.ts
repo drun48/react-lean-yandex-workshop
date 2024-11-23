@@ -1,5 +1,5 @@
 import { Token } from "../constants";
-import { checkResponse } from "./checkResponce";
+import { checkResponse, ErrorRequest } from "./checkResponce";
 
 export type TypeRequest = typeof fetch;
 
@@ -13,20 +13,25 @@ export const requestAuth = <T extends (...args: any[]) => any>(
 ) => {
   const refreshToken: TypeRequest = async (url, options) => {
     try {
-      const accessToken = localStorage.getItem(Token.accessToken);
-      const authOptions = {
-        ...options,
-        headers: { ...options?.headers, Authorization: accessToken ?? "" },
-      };
-      return request(url, authOptions);
+      const authOptions = formAuthOptions(options);
+      return await request(url, authOptions);
     } catch (e) {
-      const errorMessage = e as string;
-      if (errorMessage.includes("401") || errorMessage.includes("403")) {
+      const error = e as ErrorRequest;
+      if (error.errorBody.message === "jwt expired") {
         await callBackRefreshToken();
-        return request(url, options);
+        const authOptions = formAuthOptions(options);
+        return await request(url, authOptions);
       }
       throw e;
     }
   };
   return refreshToken;
 };
+
+function formAuthOptions(options?: RequestInit) {
+  const accessToken = localStorage.getItem(Token.accessToken);
+  return {
+    ...options,
+    headers: { ...options?.headers, Authorization: accessToken ?? "" },
+  };
+}

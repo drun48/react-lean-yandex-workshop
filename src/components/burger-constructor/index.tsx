@@ -67,7 +67,6 @@ function BurgerConstructor() {
       return;
     }
     dispatch(createOrder());
-    dispatch(clearContructor());
     setOpenModal(true);
   }, [dispatch, location, navigate, user]);
   return (
