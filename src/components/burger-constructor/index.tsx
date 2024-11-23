@@ -24,7 +24,7 @@ import { createOrder } from "../../services/order/actions";
 import { getError, getLoading } from "../../services/order/slice";
 import Loader from "../loader";
 import { getUser } from "../../services/user/slice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function BurgerConstructor() {
   const [isOpenModal, setOpenModal] = useState(false);
@@ -34,6 +34,7 @@ function BurgerConstructor() {
   const loadingOrder = useSelector(getLoading);
   const errorOrder = useSelector(getError);
   const user = useSelector(getUser);
+  const location = useLocation();
   const navigate = useNavigate();
 
   const [, refDrop] = useDrop(() => ({
@@ -62,13 +63,13 @@ function BurgerConstructor() {
 
   const openOrder = useCallback(() => {
     if (!user) {
-      navigate("/login");
-      return
+      navigate("/login", { state: { from: location } });
+      return;
     }
     dispatch(createOrder());
     dispatch(clearContructor());
     setOpenModal(true);
-  }, [dispatch, navigate, user]);
+  }, [dispatch, location, navigate, user]);
   return (
     <>
       {loadingOrder && <Loader />}
