@@ -14,7 +14,7 @@ import {
   forgotPassword as userForgotPassword,
   resetPassword as UserResetPassword,
 } from "../../api/user";
-import { setIsActiveforgotPassword, setIsAuthChecked, setUser } from "./slice";
+import { setIsAuthChecked, setUser } from "./slice";
 import { RootState } from "..";
 import { isActiveforgotPassword } from "../../constants";
 

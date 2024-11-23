@@ -12,7 +12,6 @@ import { DragType } from "../../constants";
 import { useSelector } from "react-redux";
 import {
   addIngredient,
-  clearContructor,
   ConstructorItem,
   deleteIngredient,
   getConstructorIngredient,
