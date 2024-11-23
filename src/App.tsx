@@ -1,20 +1,91 @@
-import { HTML5Backend } from "react-dnd-html5-backend";
-import AppHeader from "./components/app-header";
-import BurgerConstructor from "./components/burger-constructor";
-import BurgerIngredients from "./components/burger-ingredients";
-import { DndProvider } from "react-dnd";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import {
+  BurgerConstructorPage,
+  ForgotPasswordPage,
+  IngredientsDetailPage,
+  LoginPage,
+  ProfilePage,
+  RegisterPage,
+  ResetPasswordPage,
+  LayoutProfile,
+  HistoryOrderPage,
+} from "./pages";
+import Layout from "./layouts";
+import {
+  ProtectedRouteAuth,
+  ProtectedRouteUnAuth,
+} from "./components/protected-route";
+import { useEffect } from "react";
+import { checAuth } from "./services/user/actions";
+import { useAppDispatch } from "./services";
+import BaseModal from "./components/base-modal";
+import IngredientDetails from "./components/burger-ingredients/ingredient-details";
 
 function App() {
+  const dispatch = useAppDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const state = location.state as { backgroundLocation?: Location };
+
+  useEffect(() => {
+    dispatch(checAuth());
+  }, [dispatch]);
+
+  const handleModalClose = () => {
+    navigate(-1);
+  };
+
   return (
-    <div className="container-main">
-      <AppHeader />
-      <main className="container">
-        <DndProvider backend={HTML5Backend}>
-          <BurgerIngredients />
-          <BurgerConstructor />
-        </DndProvider>
-      </main>
-    </div>
+    <>
+      <Routes location={state?.backgroundLocation || location}>
+        <Route element={<Layout />}>
+          <Route path="/" element={<BurgerConstructorPage />} />
+          <Route
+            path="/login"
+            element={<ProtectedRouteUnAuth element={<LoginPage />} />}
+          />
+          <Route
+            path="/register"
+            element={<ProtectedRouteUnAuth element={<RegisterPage />} />}
+          />
+          <Route
+            path="/forgot-password"
+            element={<ProtectedRouteUnAuth element={<ForgotPasswordPage />} />}
+          />
+          <Route
+            path="/reset-password"
+            element={<ProtectedRouteUnAuth element={<ResetPasswordPage />} />}
+          />
+          <Route element={<LayoutProfile />}>
+            <Route
+              path="/profile"
+              element={<ProtectedRouteAuth element={<ProfilePage />} />}
+            />
+            <Route
+              path="/profile/orders"
+              element={<ProtectedRouteAuth element={<HistoryOrderPage />} />}
+            />
+          </Route>
+          <Route path="/ingredients/:id" element={<IngredientsDetailPage />} />
+        </Route>
+      </Routes>
+
+      {state?.backgroundLocation && (
+        <Routes>
+          <Route
+            path="/ingredients/:id"
+            element={
+              <BaseModal
+                handlerClose={handleModalClose}
+                title="Детали ингредиента"
+              >
+                <IngredientDetails />
+              </BaseModal>
+            }
+          />
+        </Routes>
+      )}
+    </>
   );
 }
 

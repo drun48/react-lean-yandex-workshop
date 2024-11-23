@@ -1,0 +1,27 @@
+.profile-page {
+    display: flex;
+    width: 100%;
+    margin-top: 130px;
+    gap: 80px;
+    height: fit-content;
+}
+
+.container-nav {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.container-nav footer{
+    margin-top: 80px;
+}
+
+.text-description {
+    opacity: 40%;
+}

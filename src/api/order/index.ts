@@ -1,11 +1,11 @@
 import { apiURL } from "../../constants";
-import { request } from "../../utils/request";
 import { Ingredients } from "../ingredients/types";
+import { requestAuthToken } from "../user";
 import { CreateOrder } from "./type";
 
 export async function createOrder(ingredients: Ingredients[]) {
   try {
-    const res = await request(`${apiURL}/api/orders`, {
+    const res = await requestAuthToken(`${apiURL}/api/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -15,6 +15,6 @@ export async function createOrder(ingredients: Ingredients[]) {
     const data = (await res.json()) as CreateOrder;
     return data;
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }

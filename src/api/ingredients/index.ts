@@ -19,6 +19,6 @@ export async function getListIngredients() {
       image_large: item.image_large,
     }));
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }
