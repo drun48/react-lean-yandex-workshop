@@ -1,7 +1,11 @@
 import { Token } from "../constants";
 import { checkResponse, ErrorRequest } from "./checkResponce";
 
-export type TypeRequest = typeof fetch;
+interface MyResponse<T> extends Response{
+  json(): Promise<T>
+}
+
+export type TypeRequest = <T>(...arg: Parameters<typeof fetch>) => Promise<MyResponse<T>>;
 
 export const request: TypeRequest = (url, options) => {
   return fetch(url, options).then(checkResponse);
