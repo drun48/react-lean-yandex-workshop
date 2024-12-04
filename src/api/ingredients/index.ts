@@ -4,7 +4,9 @@ import { Ingredients } from "./types";
 
 export async function getListIngredients() {
   try {
-    const res = await request(`${apiURL}/api/ingredients`);
+    const res = await request<{ data: Array<Ingredients & { _id: string }> }>(
+      `${apiURL}/api/ingredients`
+    );
     const data = (await res.json()).data;
     return data.map((item: Ingredients & { _id: string }) => ({
       id: item._id,
