@@ -86,14 +86,14 @@ function BurgerIngredients() {
             "scroll",
           ].join(" ")}
         >
-          <TypeSection listIngredients={ingredients} title="Булки" type="bun" />
+          <TypeSection listIngredients={Object.values(ingredients)} title="Булки" type="bun" />
           <TypeSection
-            listIngredients={ingredients}
+            listIngredients={Object.values(ingredients)}
             title="Соусы"
             type="sauce"
           />
           <TypeSection
-            listIngredients={ingredients}
+            listIngredients={Object.values(ingredients)}
             title="Начинки"
             type="main"
           />

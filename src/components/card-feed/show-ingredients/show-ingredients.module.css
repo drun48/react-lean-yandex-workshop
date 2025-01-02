@@ -1,0 +1,52 @@
+.show-ingredients {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.show-ingredients li {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    background-color: var(--color-bg-ingredient);
+}
+
+.show-ingredients li::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 100%;
+    padding: 2px;
+    background: var(--color-border-ingredinet);
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite: exclude;
+}
+
+.show-ingredients li img{
+    object-fit: contain;
+    width: 100px;
+}
+
+.show-ingredients li {
+    margin-right: -16px;
+}
+
+.outside{
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    background: rgb(56 56 56 / 30%);
+    border-radius: 100%;
+}

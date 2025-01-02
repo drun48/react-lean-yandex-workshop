@@ -9,6 +9,7 @@ import {
   ResetPasswordPage,
   LayoutProfile,
   HistoryOrderPage,
+  Feed,
 } from "./pages";
 import Layout from "./layouts";
 import {
@@ -44,6 +45,7 @@ function App() {
             path="/login"
             element={<ProtectedRouteUnAuth element={<LoginPage />} />}
           />
+          <Route path="/feed" element={<Feed />} />
           <Route
             path="/register"
             element={<ProtectedRouteUnAuth element={<RegisterPage />} />}
