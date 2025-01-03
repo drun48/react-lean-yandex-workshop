@@ -3,7 +3,7 @@ import { Ingredients } from "../../../api/ingredients/types";
 import styles from "./show-ingredients.module.css";
 
 type Props = {
-  ingredients: Ingredients[];
+  ingredients: (Ingredients & { uniqueId: string })[];
   showCount?: number;
 };
 
@@ -20,7 +20,7 @@ export default function ShowIngredients({ ingredients, showCount = 5 }: Props) {
         .map((el, index) => {
           if (index === 0 && outside) {
             return (
-              <li key={ingredients[showCount - 1].id}>
+              <li key={ingredients[showCount - 1].uniqueId}>
                 <img src={ingredients[showCount - 1].image} />
                 <div className={styles.outside}>
                   <p className="text_type_digits-default">+{outside}</p>
@@ -29,7 +29,7 @@ export default function ShowIngredients({ ingredients, showCount = 5 }: Props) {
             );
           }
           return (
-            <li key={el.id}>
+            <li key={el.uniqueId}>
               <img src={el.image} />
             </li>
           );

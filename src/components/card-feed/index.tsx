@@ -9,6 +9,7 @@ import styles from "./card-feed.module.css";
 import ShowIngredients from "./show-ingredients";
 import { Order } from "../../services/feed/slice";
 import getNumberRank from "../../utils/getNumberRank";
+import uuid4 from "uuid4";
 
 type Props = {
   data: Order;
@@ -22,6 +23,11 @@ export default function CardFeed({ data }: Props) {
     })
   );
 
+  const ingredientsUnicId = useMemo(
+    () => ingredients.map((el) => ({ ...el, uniqueId: uuid4() })),
+    [ingredients]
+  );
+
   const sumOrder = useMemo(() => {
     const sum = ingredients.reduce((res, el) => {
       res += el.price;
@@ -33,7 +39,9 @@ export default function CardFeed({ data }: Props) {
   return (
     <article className={styles.card}>
       <header>
-        <h3 className="text_type_digits-default">#{getNumberRank(data.number, 6)}</h3>
+        <h3 className="text_type_digits-default">
+          #{getNumberRank(data.number, 6)}
+        </h3>
         <FormattedDate
           className="text_type_main-default disabled"
           date={new Date(data.createdAt)}
@@ -42,7 +50,7 @@ export default function CardFeed({ data }: Props) {
       <h2 className="text_type_main-medium">{data.name}</h2>
       <div className={[styles["card-content"]].join(" ")}>
         <div className={[styles["card-content-ingredient"]].join(" ")}>
-          <ShowIngredients ingredients={ingredients} showCount={6}/>
+          <ShowIngredients ingredients={ingredientsUnicId} showCount={6} />
         </div>
         <div className={[styles["card-content-price"]].join(" ")}>
           <p className="type text_type_digits-default">{sumOrder}</p>
