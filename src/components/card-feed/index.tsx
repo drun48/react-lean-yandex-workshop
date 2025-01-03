@@ -46,7 +46,7 @@ export default function CardFeed({ data, isShowStatus = false }: Props) {
             <p
               className={[
                 data.status === Status.done ? styles.done : "",
-                "text_type_digits-default",
+                "text_type_main-default",
               ].join(" ")}
             >
               {StatusRussia[data.status]}
@@ -64,7 +64,7 @@ export default function CardFeed({ data, isShowStatus = false }: Props) {
           <ShowIngredients ingredients={ingredientsUnicId} showCount={6} />
         </div>
         <div className={[styles["card-content-price"]].join(" ")}>
-          <p className="type text_type_digits-default">{sumOrder}</p>
+          <p className="text_type_digits-default">{sumOrder}</p>
           <CurrencyIcon type="primary" />
         </div>
       </div>

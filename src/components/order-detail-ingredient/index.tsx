@@ -51,8 +51,11 @@ export default function OrderDetailIngredient() {
   );
 
   const sumOrder = useMemo(() => {
-    return getSum(ingredients, "price");
-  }, [ingredients]);
+    const orderPrice = ingredients.map((el) => ({
+      price: el.price * countIngredients[el.id],
+    }));
+    return getSum(orderPrice, "price");
+  }, [countIngredients, ingredients]);
 
   if (!order) {
     return <></>;
@@ -107,7 +110,7 @@ export default function OrderDetailIngredient() {
           })}
         </ul>
       </div>
-      <div className={styles['order-detail__info']}>
+      <div className={styles["order-detail__info"]}>
         <FormattedDate
           className="text_type_main-default disabled"
           date={new Date(order.createdAt)}

@@ -22,6 +22,7 @@ import { checAuth } from "./services/user/actions";
 import { useAppDispatch } from "./services";
 import BaseModal from "./components/base-modal";
 import IngredientDetails from "./components/burger-ingredients/ingredient-details";
+import OrderDetailIngredient from "./components/order-detail-ingredient";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -90,6 +91,27 @@ function App() {
               >
                 <IngredientDetails />
               </BaseModal>
+            }
+          />
+
+          <Route
+            path="/feed/:number"
+            element={
+              <BaseModal handlerClose={handleModalClose}>
+                <OrderDetailIngredient />
+              </BaseModal>
+            }
+          />
+          <Route
+            path="/profile/orders/:number"
+            element={
+              <ProtectedRouteAuth
+                element={
+                  <BaseModal handlerClose={handleModalClose}>
+                    <OrderDetailIngredient />
+                  </BaseModal>
+                }
+              />
             }
           />
         </Routes>
