@@ -16,24 +16,6 @@
     background-color: var(--color-bg-ingredient);
 }
 
-.show-ingredients li::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 100%;
-    padding: 2px;
-    background: var(--color-border-ingredinet);
-    mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-    mask-composite: exclude;
-}
-
-.show-ingredients li img{
-    object-fit: contain;
-    width: 100px;
-}
-
 .show-ingredients li {
     margin-right: -16px;
 }

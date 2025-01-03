@@ -20,7 +20,7 @@ export default function ShowIngredients({ ingredients, showCount = 5 }: Props) {
         .map((el, index) => {
           if (index === 0 && outside) {
             return (
-              <li key={ingredients[showCount - 1].uniqueId}>
+              <li key={ingredients[showCount - 1].uniqueId} className="photo-gradient-order">
                 <img src={ingredients[showCount - 1].image} />
                 <div className={styles.outside}>
                   <p className="text_type_digits-default">+{outside}</p>

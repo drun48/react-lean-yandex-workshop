@@ -1,10 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { createOrder } from "./actions";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { createOrder, getOrderById } from "./actions";
+import { Order } from "../../types/order";
 
 type InitialState = {
   order: number | null;
   loading: boolean;
   error: boolean;
+  currentOrder?: Order | null;
 };
 
 const initialState: InitialState = {
@@ -21,6 +23,7 @@ export const sliceOrder = createSlice({
     getOrder: (state) => state.order,
     getLoading: (state) => state.loading,
     getError: (state) => state.error,
+    getCurrentOrders: (s) => s.currentOrder,
   },
   extraReducers: (builder) => {
     builder
@@ -36,8 +39,29 @@ export const sliceOrder = createSlice({
       .addCase(createOrder.rejected, (state) => {
         state.loading = false;
         state.error = true;
+      })
+      .addCase(getOrderById.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+        state.currentOrder = null;
+      })
+      .addCase(getOrderById.fulfilled, (state, action) => {
+        state.currentOrder = action.payload;
+        state.loading = false;
+      })
+      .addCase(getOrderById.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
       });
   },
 });
 
-export const { getOrder, getLoading, getError } = sliceOrder.selectors;
+export const { getOrder, getLoading, getError, getCurrentOrders } =
+  sliceOrder.selectors;
+
+export const getOrderCurrentOrderByNumber = createSelector(
+  [getCurrentOrders, (number: {number: number}) => number.number],
+  (order, number) => {
+    return order?.number === number ? order : null;
+  }
+);

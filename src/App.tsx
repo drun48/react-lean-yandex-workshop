@@ -10,6 +10,7 @@ import {
   LayoutProfile,
   HistoryOrderPage,
   Feed,
+  OrderDetail,
 } from "./pages";
 import Layout from "./layouts";
 import {
@@ -69,6 +70,12 @@ function App() {
             />
           </Route>
           <Route path="/ingredients/:id" element={<IngredientsDetailPage />} />
+
+          <Route path="/feed/:number" element={<OrderDetail />} />
+          <Route
+            path="/profile/orders/:number"
+            element={<ProtectedRouteAuth element={<OrderDetail />} />}
+          />
         </Route>
       </Routes>
 

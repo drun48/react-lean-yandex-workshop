@@ -1,8 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createOrder as createOrderApi } from "../../api/order/index";
+import { createOrder as createOrderApi, getOrderById as getOrderByIdApi } from "../../api/order/index";
 import { RootState } from "..";
 import { CreateOrder } from "../../api/order/type";
-import { clearContructor, ConstructorItem } from "../constructor-ingredients/slice";
+import {
+  clearContructor,
+  ConstructorItem,
+} from "../constructor-ingredients/slice";
+import { Order } from "../../types/order";
 
 export const createOrder = createAsyncThunk<
   CreateOrder | undefined,
@@ -24,3 +28,10 @@ export const createOrder = createAsyncThunk<
   thunkAPI.dispatch(clearContructor());
   return data;
 });
+
+export const getOrderById = createAsyncThunk<Order | undefined, string>(
+  "order/getOrderById",
+  async (id) => {
+    return await getOrderByIdApi(id);
+  }
+);

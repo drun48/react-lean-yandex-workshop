@@ -24,6 +24,7 @@ import { getError, getLoading } from "../../services/order/slice";
 import Loader from "../loader";
 import { getUser } from "../../services/user/slice";
 import { useLocation, useNavigate } from "react-router-dom";
+import { getSum } from "../../utils/getSum";
 
 function BurgerConstructor() {
   const [isOpenModal, setOpenModal] = useState(false);
@@ -53,11 +54,7 @@ function BurgerConstructor() {
   );
 
   const sumOrder = useMemo(() => {
-    const sum = list.reduce((res, el) => {
-      res += el.price;
-      return res;
-    }, 0);
-    return sum + (bun?.price ?? 0) * 2;
+    return getSum(list, "price") + (bun?.price ?? 0) * 2;
   }, [list, bun]);
 
   const openOrder = useCallback(() => {

@@ -11,6 +11,7 @@ import ShowIngredients from "./show-ingredients";
 import getNumberRank from "../../utils/getNumberRank";
 import uuid4 from "uuid4";
 import { Order, Status, StatusRussia } from "../../types/Order";
+import { getSum } from "../../utils/getSum";
 
 type Props = {
   data: Order;
@@ -31,11 +32,7 @@ export default function CardFeed({ data, isShowStatus = false }: Props) {
   );
 
   const sumOrder = useMemo(() => {
-    const sum = ingredients.reduce((res, el) => {
-      res += el.price;
-      return res;
-    }, 0);
-    return sum;
+    return getSum(ingredients, "price");
   }, [ingredients]);
 
   return (
