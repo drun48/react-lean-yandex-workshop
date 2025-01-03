@@ -1,15 +1,14 @@
-import CardFeed, { Order } from "../card-feed";
+import { useAppSelector } from "../../services";
+import { feedOrders } from "../../services/feed/slice";
+import CardFeed from "../card-feed";
 import styles from './order-feed.module.css'
 
-type Props = {
-  list: Array<Order>;
-};
-
-export default function OrderFeed({ list }: Props) {
+export default function OrderFeed() {
+  const orders = useAppSelector(feedOrders)
   return (
     <ul className={[styles["order-feed-list"], "scroll"].join(" ")}>
-      {list.map((card, index) => (
-        <li key={index}>
+      {orders.map((card) => (
+        <li key={card.id}>
           <CardFeed data={card} />
         </li>
       ))}
