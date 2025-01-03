@@ -58,10 +58,3 @@ export const sliceOrder = createSlice({
 
 export const { getOrder, getLoading, getError, getCurrentOrders } =
   sliceOrder.selectors;
-
-export const getOrderCurrentOrderByNumber = createSelector(
-  [getCurrentOrders, (number: {number: number}) => number.number],
-  (order, number) => {
-    return order?.number === number ? order : null;
-  }
-);

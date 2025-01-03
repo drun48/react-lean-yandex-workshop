@@ -7,19 +7,19 @@ import {
   FormattedDate,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useParams } from "react-router-dom";
-import { getOrderCurrentOrderByNumber } from "../../services/order/slice";
 import { getOrderById } from "../../services/order/actions";
 import { getList } from "../../services/ingredients/actions";
 import { Status, StatusRussia } from "../../types/order";
 import styles from "./order-detail-ingredient.module.css";
 import getNumberRank from "../../utils/getNumberRank";
+import { getOrderCurrentOrderByNumber } from "../../services/order/selectors";
 
 export default function OrderDetailIngredient() {
   const params = useParams() as { number: string };
   const dispatch = useAppDispatch();
   const order = useAppSelector((state) =>
     getOrderCurrentOrderByNumber({
-      order: state.order,
+      state,
       number: Number(params.number),
     })
   );
