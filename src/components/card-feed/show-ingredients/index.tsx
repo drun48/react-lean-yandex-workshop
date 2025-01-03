@@ -29,7 +29,7 @@ export default function ShowIngredients({ ingredients, showCount = 5 }: Props) {
             );
           }
           return (
-            <li key={el.uniqueId}>
+            <li key={el.uniqueId} className="photo-gradient-order">
               <img src={el.image} />
             </li>
           );

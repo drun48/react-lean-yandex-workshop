@@ -5,18 +5,6 @@
 }
 
 .show-ingredients li {
-    position: relative;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 64px;
-    aspect-ratio: 1/1;
-    border-radius: 100%;
-    background-color: var(--color-bg-ingredient);
-}
-
-.show-ingredients li {
     margin-right: -16px;
 }
 
