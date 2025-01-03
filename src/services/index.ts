@@ -16,13 +16,16 @@ import {
 import { middlewareSocket } from "./middleware/middleware-socket";
 import { feedConnect, feedDisconnect } from "./feed/action";
 import { wsURL } from "../constants";
+import { profileOrderConnect, profileOrderDisconnect } from "./profile-order/action";
+import { DTOProfileOrderMessage, profileOrderClose, profileOrderConnecting, profileOrderGetMessage, profileOrderOpen, profileOrderSetError, sliceProfileOrder } from "./profile-order/slice";
 
 const rootReducer = combineSlices(
   sliceIngredients,
   sliceConstructorIngredient,
   sliceOrder,
   sliceUser,
-  sliceFeed
+  sliceFeed,
+  sliceProfileOrder
 );
 
 const middlewareFeed = middlewareSocket<unknown, DTOOrderMessage>(
@@ -38,11 +41,25 @@ const middlewareFeed = middlewareSocket<unknown, DTOOrderMessage>(
   wsURL+'/all'
 );
 
+const middlewareProfileOrder = middlewareSocket<unknown, DTOProfileOrderMessage>(
+  {
+    connect: profileOrderConnect,
+    disconnect: profileOrderDisconnect,
+    onConnecting: profileOrderConnecting,
+    onOpen: profileOrderOpen,
+    onClose: profileOrderClose,
+    onError: profileOrderSetError,
+    onMessage: profileOrderGetMessage,
+  },
+  wsURL,
+  true
+);
+
 export const store = configureStore({
   reducer: rootReducer,
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(middlewareFeed);
+    return getDefaultMiddleware().concat([middlewareFeed, middlewareProfileOrder]);
   },
 });
 

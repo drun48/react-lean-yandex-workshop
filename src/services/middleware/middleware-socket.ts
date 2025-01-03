@@ -41,7 +41,7 @@ export const middlewareSocket = <S, M>(
   let accessToken: string | null = null;
   return (store) => (next) => (action) => {
     if (isAuth) {
-      accessToken = localStorage.getItem(Token.accessToken);
+      accessToken = localStorage.getItem(Token.accessToken)?.replace('Bearer ', '') ?? null;
     }
     const { dispatch } = store;
     if (connect.match(action)) {

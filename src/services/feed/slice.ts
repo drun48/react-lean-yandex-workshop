@@ -1,20 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { WebsocketStatus } from "../../constants";
-
-export enum Status {
-  created = "created",
-  pending = "pending",
-  done = "done",
-}
-
-export type Order = {
-  ingredients: string[];
-  id: string;
-  status: Status;
-  number: number;
-  createdAt: string;
-  name: string;
-};
+import { Order } from "../../types/Order";
 
 export type DTOOrderMessage = {
   orders: (Order & { _id: string })[];

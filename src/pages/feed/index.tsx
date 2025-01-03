@@ -4,12 +4,13 @@ import { useAppDispatch, useAppSelector } from "../../services";
 import { getList } from "../../services/ingredients/actions";
 import styles from "./feed.module.css";
 import { feedConnect, feedDisconnect } from "../../services/feed/action";
-import { feedTotal, feedTotalToday } from "../../services/feed/slice";
+import { feedOrders, feedTotal, feedTotalToday } from "../../services/feed/slice";
 
 export default function Feed() {
   const dispatch = useAppDispatch();
   const total = useAppSelector(feedTotal);
   const totalToday = useAppSelector(feedTotalToday);
+  const orders = useAppSelector(feedOrders)
   useEffect(() => {
     dispatch(getList());
     dispatch(feedConnect());
@@ -21,7 +22,7 @@ export default function Feed() {
     <section className={[styles["feed-page"], "pt-10"].join(" ")}>
       <div className={styles["feed-container"]}>
         <h1 className="text_type_main-large">Лента заказов</h1>
-        <OrderFeed />
+        <OrderFeed list={orders}/>
       </div>
       <div className={styles['feed-statistics']}>
         <div>

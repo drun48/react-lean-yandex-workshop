@@ -7,15 +7,17 @@ import { getIngredientsByArrayId } from "../../services/ingredients/slice";
 import { useMemo } from "react";
 import styles from "./card-feed.module.css";
 import ShowIngredients from "./show-ingredients";
-import { Order } from "../../services/feed/slice";
+
 import getNumberRank from "../../utils/getNumberRank";
 import uuid4 from "uuid4";
+import { Order, Status, StatusRussia } from "../../types/Order";
 
 type Props = {
   data: Order;
+  isShowStatus?: boolean;
 };
 
-export default function CardFeed({ data }: Props) {
+export default function CardFeed({ data, isShowStatus = false }: Props) {
   const ingredients = useAppSelector((state) =>
     getIngredientsByArrayId({
       ingredients: state.ingredients,
@@ -39,9 +41,21 @@ export default function CardFeed({ data }: Props) {
   return (
     <article className={styles.card}>
       <header>
-        <h3 className="text_type_digits-default">
-          #{getNumberRank(data.number, 6)}
-        </h3>
+        <div>
+          <h3 className="text_type_digits-default">
+            #{getNumberRank(data.number, 6)}
+          </h3>
+          {isShowStatus && (
+            <p
+              className={[
+                data.status === Status.done ? styles.done : "",
+                "text_type_digits-default",
+              ].join(" ")}
+            >
+              {StatusRussia[data.status]}
+            </p>
+          )}
+        </div>
         <FormattedDate
           className="text_type_main-default disabled"
           date={new Date(data.createdAt)}
