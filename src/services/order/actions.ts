@@ -18,7 +18,7 @@ export const createOrder = createAsyncThunk<
   const state = thunkAPI.getState();
   const ingredients = [...state.constructorIngredient.list];
   if (state.constructorIngredient.bun) {
-    ingredients.push(state.constructorIngredient.bun as ConstructorItem);
+    ingredients.unshift(state.constructorIngredient.bun as ConstructorItem);
     ingredients.push(state.constructorIngredient.bun as ConstructorItem);
   }
   const data = await createOrderApi(ingredients);

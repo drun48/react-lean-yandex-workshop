@@ -1,4 +1,4 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { createOrder, getOrderById } from "./actions";
 import { Order } from "../../types/order";
 
