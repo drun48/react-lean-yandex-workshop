@@ -1,7 +1,7 @@
 .feed-page {
     display: flex;
-    flex-direction: column;
     width: 100%;
+    gap: 60px;
 }
 
 .feed-container {
@@ -10,4 +10,14 @@
     gap: 20px;
     height: 80vh;
     max-width: 50%;
+}
+
+.feed-statistics {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.shadow-digit {
+    text-shadow: 0 0 32px var(--color-shadow-digit);
 }

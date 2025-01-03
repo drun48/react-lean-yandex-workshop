@@ -17,6 +17,7 @@
   --color-link:rgba(76, 76, 255, 1);
   --color-bg-ingredient:rgba(19, 19, 22, 1);
   --color-border-ingredinet:linear-gradient(rgba(128, 26, 178, 1), rgba(76, 76, 255, 1));
+  --color-shadow-digit:rgba(51, 51, 255, 0.5);
 }
 
 ul {
