@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { WebsocketStatus } from "../../constants";
-import { Order } from "../../types/Order";
+import { Order } from "../../types/order";
 
 type TInitialState = {
   orders: Order[];

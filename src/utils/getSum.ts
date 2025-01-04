@@ -4,7 +4,7 @@ export const getSum = <T extends Record<string, unknown>>(
 ) => {
   return list.reduce((sum, el) => {
     if (typeof el[field] === 'number') {
-      sum += el[field];
+      sum += el[field] as number;
     }
     return sum;
   }, 0);
