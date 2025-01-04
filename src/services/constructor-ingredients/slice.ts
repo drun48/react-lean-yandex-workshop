@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Ingredients } from "../../api/ingredients/types";
 import uuid4 from "uuid4";
 
@@ -7,13 +7,6 @@ export type ConstructorItem = Ingredients & { uniqueId: string };
 type InitialState = {
   bun: Ingredients | null;
   list: ConstructorItem[];
-};
-
-type ActionSortIngredient = {
-  payload: {
-    currentElement: ConstructorItem;
-    offsetElement: ConstructorItem;
-  };
 };
 
 const initialState: InitialState = {
@@ -28,7 +21,7 @@ export const sliceConstructorIngredient = createSlice({
     addIngredient: {
       reducer: (
         state,
-        action: { payload: { value: Ingredients; uniqueId: string } }
+        action: PayloadAction<{ value: Ingredients; uniqueId: string }>
       ) => {
         if (action.payload.value.type === "bun") {
           state.bun = action.payload.value;
@@ -43,12 +36,18 @@ export const sliceConstructorIngredient = createSlice({
         return { payload: { value: ingredient, uniqueId: uuid4() } };
       },
     },
-    deleteIngredient(state, action: { payload: ConstructorItem }) {
+    deleteIngredient(state, action: PayloadAction<ConstructorItem>) {
       state.list = state.list.filter(
         (el) => el.uniqueId !== action.payload.uniqueId
       );
     },
-    sortIngredient(state, action: ActionSortIngredient) {
+    sortIngredient(
+      state,
+      action: PayloadAction<{
+        currentElement: ConstructorItem;
+        offsetElement: ConstructorItem;
+      }>
+    ) {
       const currentIndex = state.list.findIndex(
         (el) => el.uniqueId === action.payload.currentElement.uniqueId
       );
