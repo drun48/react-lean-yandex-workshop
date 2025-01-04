@@ -5,6 +5,7 @@ import { getList } from "../../services/ingredients/actions";
 import styles from "./feed.module.css";
 import { feedConnect, feedDisconnect } from "../../services/feed/action";
 import { feedOrders, feedTotal, feedTotalToday } from "../../services/feed/slice";
+import FeedLastStatus from "../../components/feed-last-status";
 
 export default function Feed() {
   const dispatch = useAppDispatch();
@@ -25,6 +26,7 @@ export default function Feed() {
         <OrderFeed list={orders}/>
       </div>
       <div className={styles['feed-statistics']}>
+        <FeedLastStatus/>
         <div>
           <h2 className="text_type_main-medium">Выполнено за все время:</h2>
           <p

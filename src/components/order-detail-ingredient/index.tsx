@@ -75,7 +75,7 @@ export default function OrderDetailIngredient() {
         <h2 className="text_type_main-medium">{order.name}</h2>
         <p
           className={[
-            order.status === Status.done ? styles.done : "",
+            order.status === Status.done ? 'text-done' : "",
             "text_type_main-default",
           ].join(" ")}
         >

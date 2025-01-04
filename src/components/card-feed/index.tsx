@@ -10,7 +10,7 @@ import ShowIngredients from "./show-ingredients";
 
 import getNumberRank from "../../utils/getNumberRank";
 import uuid4 from "uuid4";
-import { Order, Status, StatusRussia } from "../../types/Order";
+import { Order, Status, StatusRussia } from "../../types/order";
 import { getSum } from "../../utils/getSum";
 
 type Props = {
@@ -45,7 +45,7 @@ export default function CardFeed({ data, isShowStatus = false }: Props) {
           {isShowStatus && (
             <p
               className={[
-                data.status === Status.done ? styles.done : "",
+                data.status === Status.done ? 'text-done' : "",
                 "text_type_main-default",
               ].join(" ")}
             >

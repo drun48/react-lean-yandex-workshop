@@ -30,7 +30,3 @@
     align-items: flex-end;
     gap:8px;
 }
-
-.done{
-    color: var(--color-access);
-}

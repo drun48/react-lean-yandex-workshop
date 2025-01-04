@@ -115,3 +115,7 @@ a {
   object-fit: contain;
   width: 100px;
 }
+
+.text-done{
+  color: var(--color-access);
+}
