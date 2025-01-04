@@ -1,7 +1,8 @@
 import { apiURL } from "../../constants";
+import { Ingredients } from "../../types/ingredients";
 import { Order } from "../../types/order";
 import { request } from "../../utils/request";
-import { Ingredients } from "../ingredients/types";
+
 import { requestAuthToken } from "../user";
 import { CreateOrder } from "./type";
 

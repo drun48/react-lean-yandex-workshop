@@ -16,7 +16,6 @@ import {
   deleteIngredient,
   getConstructorIngredient,
 } from "../../services/constructor-ingredients/slice";
-import { Ingredients } from "../../api/ingredients/types";
 import { useAppDispatch } from "../../services";
 import DragConstructorElement from "./drag-constroctor-element";
 import { createOrder } from "../../services/order/actions";
@@ -25,6 +24,7 @@ import Loader from "../loader";
 import { getUser } from "../../services/user/slice";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getSum } from "../../utils/getSum";
+import { Ingredients } from "../../types/ingredients";
 
 function BurgerConstructor() {
   const [isOpenModal, setOpenModal] = useState(false);

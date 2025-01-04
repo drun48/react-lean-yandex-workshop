@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { Ingredients } from "../../../api/ingredients/types";
 import styles from "./show-ingredients.module.css";
+import { Ingredients } from "../../../types/ingredients";
 
 type Props = {
   ingredients: (Ingredients & { uniqueId: string })[];

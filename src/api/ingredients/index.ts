@@ -1,6 +1,6 @@
 import { apiURL } from "../../constants";
+import { Ingredients } from "../../types/ingredients";
 import { request } from "../../utils/request";
-import { Ingredients } from "./types";
 
 export async function getListIngredients() {
   try {

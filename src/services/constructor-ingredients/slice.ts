@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Ingredients } from "../../api/ingredients/types";
 import uuid4 from "uuid4";
+import { Ingredients } from "../../types/ingredients";
 
 export type ConstructorItem = Ingredients & { uniqueId: string };
 

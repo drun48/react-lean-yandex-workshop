@@ -1,6 +1,6 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { getList } from "./actions";
-import { Ingredients } from "../../api/ingredients/types";
+import { Ingredients } from "../../types/ingredients";
 
 interface initialState {
   list: Record<string, Ingredients>;
@@ -29,7 +29,7 @@ export const sliceIngredients = createSlice({
         state.list = action.payload.reduce((res, item) => {
           res[item.id] = item;
           return res;
-        }, {} as  Record<string, Ingredients>);
+        }, {} as Record<string, Ingredients>);
       });
   },
 });
@@ -45,7 +45,7 @@ export const getIngredientsById = createSelector(
 
 export const getIngredientsByArrayId = createSelector(
   [getStateIngredients, (idObj: { ids: string[] }) => idObj.ids],
-  (state, ids)=>{
-    return ids.map((id)=>state.list[id]).filter(el=>el)
+  (state, ids) => {
+    return ids.map((id) => state.list[id]).filter((el) => el);
   }
-)
+);

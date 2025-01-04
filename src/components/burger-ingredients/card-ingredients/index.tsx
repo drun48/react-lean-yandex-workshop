@@ -3,12 +3,12 @@ import {
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./card-ingredients.module.css";
-import { Ingredients } from "../../../api/ingredients/types";
 import { useDrag } from "react-dnd";
 import { DragType } from "../../../constants";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getConstructorIngredient } from "../../../services/constructor-ingredients/slice";
+import { Ingredients } from "../../../types/ingredients";
 
 type Props = {
   data: Pick<Ingredients, "id" | "name" | "price" | "image" | "type">;
