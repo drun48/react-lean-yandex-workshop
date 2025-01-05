@@ -23,6 +23,7 @@ import { useAppDispatch } from "./services";
 import BaseModal from "./components/base-modal";
 import IngredientDetails from "./components/burger-ingredients/ingredient-details";
 import OrderDetailIngredient from "./components/order-detail-ingredient";
+import { getList } from "./services/ingredients/actions";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -32,6 +33,7 @@ function App() {
 
   useEffect(() => {
     dispatch(checAuth());
+    dispatch(getList());
   }, [dispatch]);
 
   const handleModalClose = () => {

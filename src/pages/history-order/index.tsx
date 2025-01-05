@@ -8,7 +8,6 @@ import {
   profileOrderConnect,
   profileOrderDisconnect,
 } from "../../services/profile-order/action";
-import { getList } from "../../services/ingredients/actions";
 
 export default function HistoryOrderPage() {
   const dispatch = useAppDispatch();
@@ -19,7 +18,6 @@ export default function HistoryOrderPage() {
 
   useEffect(() => {
     setConainerFooter(document.getElementById("profile-page-footer") ?? null);
-    dispatch(getList());
     dispatch(profileOrderConnect());
     return () => {
       dispatch(profileOrderDisconnect());
@@ -40,7 +38,7 @@ export default function HistoryOrderPage() {
           </p>,
           conainerFooter
         )}
-      <OrderFeed list={orders} isShowStatus={true}/>
+      <OrderFeed list={orders} isShowStatus={true} />
     </>
   );
 }

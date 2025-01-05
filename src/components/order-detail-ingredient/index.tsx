@@ -8,7 +8,6 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useParams } from "react-router-dom";
 import { getOrderById } from "../../services/order/actions";
-import { getList } from "../../services/ingredients/actions";
 import { Status, StatusRussia } from "../../types/order";
 import styles from "./order-detail-ingredient.module.css";
 import getNumberRank from "../../utils/getNumberRank";
@@ -25,11 +24,10 @@ export default function OrderDetailIngredient() {
   );
 
   useEffect(() => {
-    dispatch(getList());
     if (!order) {
       dispatch(getOrderById(params.number));
     }
-  }, []);
+  }, [dispatch, order, params.number]);
 
   const countIngredients = useMemo(() => {
     return (
@@ -75,7 +73,7 @@ export default function OrderDetailIngredient() {
         <h2 className="text_type_main-medium">{order.name}</h2>
         <p
           className={[
-            order.status === Status.done ? 'text-done' : "",
+            order.status === Status.done ? "text-done" : "",
             "text_type_main-default",
           ].join(" ")}
         >
