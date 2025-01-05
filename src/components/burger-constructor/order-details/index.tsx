@@ -1,11 +1,11 @@
 import image from "../../../assets/img/done.svg";
+import { useAppSelector } from "../../../services";
 import { getOrder } from "../../../services/order/slice";
 import getNumberRank from "../../../utils/getNumberRank";
 import styles from "./order-details.module.css";
-import { useSelector } from "react-redux";
 
 function OrderDetails() {
-  const order = useSelector(getOrder);
+  const order = useAppSelector(getOrder);
 
   return (
     <div className={[styles["order-details"], "pt-20", "pb-20"].join(" ")}>

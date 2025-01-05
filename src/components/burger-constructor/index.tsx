@@ -9,14 +9,13 @@ import OrderDetails from "./order-details";
 import BaseModal from "../base-modal";
 import { useDrop } from "react-dnd";
 import { DragType } from "../../constants";
-import { useSelector } from "react-redux";
 import {
   addIngredient,
   ConstructorItem,
   deleteIngredient,
   getConstructorIngredient,
 } from "../../services/constructor-ingredients/slice";
-import { useAppDispatch } from "../../services";
+import { useAppDispatch, useAppSelector } from "../../services";
 import DragConstructorElement from "./drag-constroctor-element";
 import { createOrder } from "../../services/order/actions";
 import { getError, getLoading } from "../../services/order/slice";
@@ -30,10 +29,10 @@ function BurgerConstructor() {
   const [isOpenModal, setOpenModal] = useState(false);
 
   const dispatch = useAppDispatch();
-  const { bun, list } = useSelector(getConstructorIngredient);
-  const loadingOrder = useSelector(getLoading);
-  const errorOrder = useSelector(getError);
-  const user = useSelector(getUser);
+  const { bun, list } = useAppSelector(getConstructorIngredient);
+  const loadingOrder = useAppSelector(getLoading);
+  const errorOrder = useAppSelector(getError);
+  const user = useAppSelector(getUser);
   const location = useLocation();
   const navigate = useNavigate();
 

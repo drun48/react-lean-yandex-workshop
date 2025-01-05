@@ -6,9 +6,9 @@ import styles from "./card-ingredients.module.css";
 import { useDrag } from "react-dnd";
 import { DragType } from "../../../constants";
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
 import { getConstructorIngredient } from "../../../services/constructor-ingredients/slice";
 import { Ingredients } from "../../../types/ingredients";
+import { useAppSelector } from "../../../services";
 
 type Props = {
   data: Pick<Ingredients, "id" | "name" | "price" | "image" | "type">;
@@ -19,7 +19,7 @@ function CardIngredient({ data }: Props) {
     type: DragType.CardIngredient,
     item: data,
   });
-  const { list, bun } = useSelector(getConstructorIngredient);
+  const { list, bun } = useAppSelector(getConstructorIngredient);
 
   const count = useMemo(() => {
     if (data.type === "bun") {
@@ -34,7 +34,7 @@ function CardIngredient({ data }: Props) {
   return (
     <article className={styles.card} ref={drag}>
       {count > 0 && <Counter count={count} size="default" extraClass="m-1" />}
-      <img src={data.image} className="pl-4 pr-4" alt="Икона ингредиента"/>
+      <img src={data.image} className="pl-4 pr-4" alt="Икона ингредиента" />
       <div className={styles.price}>
         <p className="text text_type_digits-default">{data.price}</p>
         <CurrencyIcon type="primary" />

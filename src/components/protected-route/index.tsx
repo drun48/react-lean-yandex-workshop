@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
 import { getIsAuthChecked, getUser } from "../../services/user/slice";
 import Loader from "../loader";
 import { Navigate, useLocation } from "react-router-dom";
+import { useAppSelector } from "../../services";
 
 type Props = {
   unAuth?: boolean;
@@ -9,8 +9,8 @@ type Props = {
 };
 
 function ProtectedRoute({ unAuth = false, element }: Props) {
-  const isAuthChecked = useSelector(getIsAuthChecked);
-  const user = useSelector(getUser);
+  const isAuthChecked = useAppSelector(getIsAuthChecked);
+  const user = useAppSelector(getUser);
   const location = useLocation();
 
   if (!isAuthChecked) {
