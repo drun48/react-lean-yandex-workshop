@@ -16,7 +16,7 @@ type initialState = {
   statusSocket: WebsocketStatus;
 };
 
-const initialState: initialState = {
+export const initialState: initialState = {
   total: 0,
   totalToday: 0,
   orders: [],
