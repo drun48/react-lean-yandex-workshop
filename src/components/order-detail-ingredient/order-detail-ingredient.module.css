@@ -1,0 +1,56 @@
+.order-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.order-detail__number{
+    text-align: center;
+}
+
+.order-detail__title{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 40px;
+}
+
+.order-detail__container-ingredient{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 60px;
+}
+
+.order-ingredient {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: auto;
+    max-height: 376px;
+}
+
+.order-ingredient__item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+}
+
+.order-ingredient__item__title{
+    flex: 1 auto;
+}
+
+.order-detail__info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.price{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}

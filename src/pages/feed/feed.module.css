@@ -1,0 +1,24 @@
+.feed-page {
+    display: flex;
+    width: 100%;
+    gap: 60px;
+}
+
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 80vh;
+    max-width: 50%;
+    min-width: 50%;
+}
+
+.feed-statistics {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.shadow-digit {
+    text-shadow: 0 0 32px var(--color-shadow-digit);
+}

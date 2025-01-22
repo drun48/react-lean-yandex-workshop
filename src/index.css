@@ -14,7 +14,11 @@
   --gray-main: rgba(133, 133, 173, 1);
   --color-main: rgba(28, 28, 33, 1);
   --color-active-link: rgba(242, 242, 243, 1);
-  --color-link:rgba(76, 76, 255, 1);
+  --color-link: rgba(76, 76, 255, 1);
+  --color-bg-ingredient: rgba(19, 19, 22, 1);
+  --color-border-ingredinet: linear-gradient(rgba(128, 26, 178, 1), rgba(76, 76, 255, 1));
+  --color-shadow-digit: rgba(51, 51, 255, 0.5);
+  --color-access: rgba(0, 204, 204, 1)
 }
 
 ul {
@@ -71,12 +75,47 @@ main {
 
 a {
   text-decoration: none;
+  color: unset;
 }
 
 .active-link {
   color: var(--color-active-link);
 }
 
-.link-click{
+.link-click {
   color: var(--color-link);
+}
+
+.photo-gradient-order {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  background-color: var(--color-bg-ingredient);
+}
+
+.photo-gradient-order::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 100%;
+  padding: 2px;
+  background: var(--color-border-ingredinet);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.photo-gradient-order img {
+  object-fit: contain;
+  width: 100px;
+}
+
+.text-done{
+  color: var(--color-access);
 }

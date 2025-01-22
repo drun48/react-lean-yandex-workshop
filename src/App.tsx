@@ -9,6 +9,8 @@ import {
   ResetPasswordPage,
   LayoutProfile,
   HistoryOrderPage,
+  Feed,
+  OrderDetail,
 } from "./pages";
 import Layout from "./layouts";
 import {
@@ -20,6 +22,8 @@ import { checAuth } from "./services/user/actions";
 import { useAppDispatch } from "./services";
 import BaseModal from "./components/base-modal";
 import IngredientDetails from "./components/burger-ingredients/ingredient-details";
+import OrderDetailIngredient from "./components/order-detail-ingredient";
+import { getList } from "./services/ingredients/actions";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -29,6 +33,7 @@ function App() {
 
   useEffect(() => {
     dispatch(checAuth());
+    dispatch(getList());
   }, [dispatch]);
 
   const handleModalClose = () => {
@@ -44,6 +49,7 @@ function App() {
             path="/login"
             element={<ProtectedRouteUnAuth element={<LoginPage />} />}
           />
+          <Route path="/feed" element={<Feed />} />
           <Route
             path="/register"
             element={<ProtectedRouteUnAuth element={<RegisterPage />} />}
@@ -67,6 +73,12 @@ function App() {
             />
           </Route>
           <Route path="/ingredients/:id" element={<IngredientsDetailPage />} />
+
+          <Route path="/feed/:number" element={<OrderDetail />} />
+          <Route
+            path="/profile/orders/:number"
+            element={<ProtectedRouteAuth element={<OrderDetail />} />}
+          />
         </Route>
       </Routes>
 
@@ -81,6 +93,27 @@ function App() {
               >
                 <IngredientDetails />
               </BaseModal>
+            }
+          />
+
+          <Route
+            path="/feed/:number"
+            element={
+              <BaseModal handlerClose={handleModalClose}>
+                <OrderDetailIngredient />
+              </BaseModal>
+            }
+          />
+          <Route
+            path="/profile/orders/:number"
+            element={
+              <ProtectedRouteAuth
+                element={
+                  <BaseModal handlerClose={handleModalClose}>
+                    <OrderDetailIngredient />
+                  </BaseModal>
+                }
+              />
             }
           />
         </Routes>

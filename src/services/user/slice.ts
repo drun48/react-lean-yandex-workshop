@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   edit,
   forgotPassword,
@@ -28,13 +28,13 @@ export const sliceUser = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setIsAuthChecked(state, action) {
+    setIsAuthChecked(state, action: PayloadAction<boolean>) {
       state.isAuthChecked = action.payload;
     },
-    setUser(state, action) {
+    setUser(state, action: PayloadAction<null | DTOAnswerUser>) {
       state.user = action.payload;
     },
-    setIsActiveforgotPassword(state, action) {
+    setIsActiveforgotPassword(state, action: PayloadAction<boolean>) {
       state.isActiveforgotPassword = action.payload;
     },
   },

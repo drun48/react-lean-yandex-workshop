@@ -4,21 +4,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Loader from "../loader";
 import styles from "./burger-ingredients.module.css";
 import { getStateIngredients } from "../../services/ingredients/slice";
-import { getList } from "../../services/ingredients/actions";
-import { useAppDispatch, useAppSelector } from "../../services";
+import { useAppSelector } from "../../services";
 
 function BurgerIngredients() {
-  const dispatch = useAppDispatch();
   const { list: ingredients, loading: isLoading } =
     useAppSelector(getStateIngredients);
 
   const [currentTab, setCurrentTab] = useState<string>("");
 
   const refContainerIngredients = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    dispatch(getList());
-  }, [dispatch]);
 
   const onScroll = useCallback(() => {
     const container = refContainerIngredients.current;
@@ -86,14 +80,18 @@ function BurgerIngredients() {
             "scroll",
           ].join(" ")}
         >
-          <TypeSection listIngredients={ingredients} title="Булки" type="bun" />
           <TypeSection
-            listIngredients={ingredients}
+            listIngredients={Object.values(ingredients)}
+            title="Булки"
+            type="bun"
+          />
+          <TypeSection
+            listIngredients={Object.values(ingredients)}
             title="Соусы"
             type="sauce"
           />
           <TypeSection
-            listIngredients={ingredients}
+            listIngredients={Object.values(ingredients)}
             title="Начинки"
             type="main"
           />

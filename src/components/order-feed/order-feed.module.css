@@ -1,0 +1,7 @@
+.order-feed-list{
+    display: flex;
+    flex-direction: column;
+    gap:16px;
+    width: 100%;
+    padding-right: 16px;
+}

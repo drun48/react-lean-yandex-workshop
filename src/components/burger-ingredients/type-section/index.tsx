@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import CardIngredient from "../card-ingredients";
 import styles from "./type-section.module.css";
-import { Ingredients } from "../../../api/ingredients/types";
 import { Link, useLocation } from "react-router-dom";
+import { Ingredients } from "../../../types/ingredients";
 
 type Props = {
   title: string;

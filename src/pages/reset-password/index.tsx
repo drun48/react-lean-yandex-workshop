@@ -4,20 +4,19 @@ import HelperNavigation from "../../components/helper-navigation";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { isActiveforgotPassword as isActiveforgotPasswordName } from "../../constants";
-import { useSelector } from "react-redux";
 import {
   getIsActiveforgotPassword,
   getLoading,
   setIsActiveforgotPassword,
 } from "../../services/user/slice";
 import Loader from "../../components/loader";
-import { useAppDispatch } from "../../services";
+import { useAppDispatch, useAppSelector } from "../../services";
 
 export default function ResetPasswordPage() {
-  const isActiveforgotPassword = useSelector(getIsActiveforgotPassword);
+  const isActiveforgotPassword = useAppSelector(getIsActiveforgotPassword);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const loading = useSelector(getLoading);
+  const loading = useAppSelector(getLoading);
 
   useEffect(() => {
     dispatch(

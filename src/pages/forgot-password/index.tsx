@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import FormForgotPassword from "../../components/form-forgot-password";
 import {
   getIsActiveforgotPassword,
@@ -7,17 +6,17 @@ import {
 } from "../../services/user/slice";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../services";
+import { useAppDispatch, useAppSelector } from "../../services";
 import { isActiveforgotPassword as isActiveforgotPasswordName } from "../../constants";
 import styles from "./forgot-password.module.css";
 import HelperNavigation from "../../components/helper-navigation";
 import Loader from "../../components/loader";
 
 function ForgotPasswordPage() {
-  const isActiveforgotPassword = useSelector(getIsActiveforgotPassword);
+  const isActiveforgotPassword = useAppSelector(getIsActiveforgotPassword);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const loading = useSelector(getLoading);
+  const loading = useAppSelector(getLoading);
 
   useEffect(() => {
     dispatch(

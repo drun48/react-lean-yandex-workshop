@@ -25,7 +25,7 @@ function AppHeader() {
             <p className="text_type_main-default">Конструктор</p>
           </NavLink>
           <NavLink
-            to="/order-feed"
+            to="/feed"
             className={({ isActive }) =>
               [styles["nav__item"], isActive ? "active-link" : "disabled"].join(
                 " "

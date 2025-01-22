@@ -1,15 +1,28 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./history-order.module.css";
+import OrderFeed from "../../components/order-feed";
+import { useAppDispatch, useAppSelector } from "../../services";
+import { profileOrders } from "../../services/profile-order/slice";
+import {
+  profileOrderConnect,
+  profileOrderDisconnect,
+} from "../../services/profile-order/action";
 
 export default function HistoryOrderPage() {
+  const dispatch = useAppDispatch();
   const [conainerFooter, setConainerFooter] = useState<HTMLElement | null>(
     null
   );
+  const orders = useAppSelector(profileOrders);
 
   useEffect(() => {
     setConainerFooter(document.getElementById("profile-page-footer") ?? null);
-  }, []);
+    dispatch(profileOrderConnect());
+    return () => {
+      dispatch(profileOrderDisconnect());
+    };
+  }, [dispatch]);
   return (
     <>
       {conainerFooter &&
@@ -25,6 +38,7 @@ export default function HistoryOrderPage() {
           </p>,
           conainerFooter
         )}
+      <OrderFeed list={orders} isShowStatus={true} />
     </>
   );
 }

@@ -7,6 +7,8 @@ import RegisterPage from "./register";
 import ResetPasswordPage from "./reset-password";
 import LayoutProfile from "./profile/layout-profile";
 import HistoryOrderPage from "./history-order";
+import Feed from "./feed";
+import OrderDetail from "./order-detail";
 
 export {
   BurgerConstructorPage,
@@ -17,5 +19,7 @@ export {
   RegisterPage,
   ResetPasswordPage,
   LayoutProfile,
-  HistoryOrderPage 
+  HistoryOrderPage,
+  Feed,
+  OrderDetail,
 };

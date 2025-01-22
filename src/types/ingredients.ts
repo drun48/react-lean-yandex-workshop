@@ -10,4 +10,3 @@ export type Ingredients = {
     carbohydrates: number;
     calories: number;
   };
-  

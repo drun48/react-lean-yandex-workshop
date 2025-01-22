@@ -4,9 +4,8 @@ import {
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useFormState } from "../../hooks/form-state";
-import { useAppDispatch } from "../../services";
+import { useAppDispatch, useAppSelector } from "../../services";
 import styles from "./form-profile.module.css";
-import { useSelector } from "react-redux";
 import { FormEventHandler, useEffect, useMemo } from "react";
 import { getUser } from "../../services/user/slice";
 import { edit } from "../../services/user/actions";
@@ -19,7 +18,7 @@ const initForm = {
 
 export default function FormProfile() {
   const [form, changeDataForm, setForm] = useFormState(initForm);
-  const user = useSelector(getUser);
+  const user = useAppSelector(getUser);
 
   useEffect(() => {
     if (user) {

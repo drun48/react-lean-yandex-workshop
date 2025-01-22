@@ -9,30 +9,30 @@ import OrderDetails from "./order-details";
 import BaseModal from "../base-modal";
 import { useDrop } from "react-dnd";
 import { DragType } from "../../constants";
-import { useSelector } from "react-redux";
 import {
   addIngredient,
   ConstructorItem,
   deleteIngredient,
   getConstructorIngredient,
 } from "../../services/constructor-ingredients/slice";
-import { Ingredients } from "../../api/ingredients/types";
-import { useAppDispatch } from "../../services";
+import { useAppDispatch, useAppSelector } from "../../services";
 import DragConstructorElement from "./drag-constroctor-element";
 import { createOrder } from "../../services/order/actions";
 import { getError, getLoading } from "../../services/order/slice";
 import Loader from "../loader";
 import { getUser } from "../../services/user/slice";
 import { useLocation, useNavigate } from "react-router-dom";
+import { getSum } from "../../utils/getSum";
+import { Ingredients } from "../../types/ingredients";
 
 function BurgerConstructor() {
   const [isOpenModal, setOpenModal] = useState(false);
 
   const dispatch = useAppDispatch();
-  const { bun, list } = useSelector(getConstructorIngredient);
-  const loadingOrder = useSelector(getLoading);
-  const errorOrder = useSelector(getError);
-  const user = useSelector(getUser);
+  const { bun, list } = useAppSelector(getConstructorIngredient);
+  const loadingOrder = useAppSelector(getLoading);
+  const errorOrder = useAppSelector(getError);
+  const user = useAppSelector(getUser);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -53,11 +53,7 @@ function BurgerConstructor() {
   );
 
   const sumOrder = useMemo(() => {
-    const sum = list.reduce((res, el) => {
-      res += el.price;
-      return res;
-    }, 0);
-    return sum + (bun?.price ?? 0) * 2;
+    return getSum(list, "price") + (bun?.price ?? 0) * 2;
   }, [list, bun]);
 
   const openOrder = useCallback(() => {

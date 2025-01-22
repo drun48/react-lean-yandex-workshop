@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import ModalOverlay from "./modal-overlay";
 
 type Props = {
-  isOpen?: boolean;
   title?: string;
   children?: React.ReactNode;
   handlerClose?: HandlerClose;
