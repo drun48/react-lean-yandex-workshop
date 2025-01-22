@@ -7,7 +7,7 @@ interface initialState {
   loading: boolean;
 }
 
-const initialState: initialState = {
+export const initialState: initialState = {
   list: {},
   loading: false,
 };
