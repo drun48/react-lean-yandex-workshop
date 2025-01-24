@@ -13,7 +13,6 @@ import {
   register,
   resetPassword,
 } from "./actions";
-import { store } from "..";
 
 const user = {
   email: "test@mail.ru",
