@@ -1,5 +1,6 @@
 import {} from 'cypress'
 import {} from '../support/cypress'
+import { SELECTORS_INGREDIENT_1 } from '../support/selectors';
 
 describe("Constructor Burger", () => {
   beforeEach(() => {
@@ -9,7 +10,7 @@ describe("Constructor Burger", () => {
 
   it("should include two buns on top and bottom", () => {
     cy.dropElement(
-      "[data-testid=ingredient-1]",
+      SELECTORS_INGREDIENT_1,
       "[data-testid=container-drop]"
     );
     cy.get(
@@ -22,7 +23,7 @@ describe("Constructor Burger", () => {
 
   it("should drag the bun and replace if it was already in the designer", () => {
     cy.dropElement(
-      "[data-testid=ingredient-1]",
+      SELECTORS_INGREDIENT_1,
       "[data-testid=container-drop]"
     );
     cy.get(

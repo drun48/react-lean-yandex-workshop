@@ -1,4 +1,7 @@
 /// <reference types="cypress" />
+
+import { SELECTORS_INGREDIENT_1 } from "./selectors";
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -56,7 +59,7 @@ Cypress.Commands.add("auth", (visitNext?: string) => {
 });
 
 Cypress.Commands.add("createOrder", () => {
-  cy.dropElement("[data-testid=ingredient-1]", "[data-testid=container-drop]");
+  cy.dropElement(SELECTORS_INGREDIENT_1, "[data-testid=container-drop]");
   cy.dropElement("[data-testid=ingredient-4]", "[data-testid=container-drop]");
 
   cy.get("[data-testid=create-order-btn]").click();
