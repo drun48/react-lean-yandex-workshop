@@ -75,11 +75,12 @@ function BurgerConstructor() {
       <div
         className={[styles["burger-constructor"], "mt-25"].join(" ")}
         ref={refDrop}
+        data-testid="container-drop"
       >
         <div
           className={[styles["burger-constructor__list"], "mb-10"].join(" ")}
         >
-          <div className="pl-8">
+          <div className="pl-8" data-testid="constructor-element-bun-up">
             {bun && (
               <ConstructorElement
                 isLocked={true}
@@ -95,7 +96,11 @@ function BurgerConstructor() {
           >
             {list.map((el) => {
               return (
-                <li className="pl-8" key={el.uniqueId}>
+                <li
+                  className="pl-8"
+                  key={el.uniqueId}
+                  data-testid={`constructor-element-${el.id}`}
+                >
                   <DragConstructorElement
                     data={el}
                     handleClose={handlerDelete(el)}
@@ -104,7 +109,7 @@ function BurgerConstructor() {
               );
             })}
           </ul>
-          <div className="pl-8">
+          <div className="pl-8" data-testid="constructor-element-bun-down">
             {bun && (
               <ConstructorElement
                 isLocked={true}
@@ -128,6 +133,7 @@ function BurgerConstructor() {
               type="primary"
               size="medium"
               onClick={openOrder}
+              data-testid='create-order-btn'
             >
               Оформить заказ
             </Button>

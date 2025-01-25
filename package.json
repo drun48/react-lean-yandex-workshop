@@ -9,7 +9,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "jest",
-    "deploy-script": "npm run build && scp -r ./dist/* drun48@51.250.111.16:/home/drun48/stellar-frontend"
+    "deploy-script": "npm run build && scp -r ./dist/* drun48@51.250.111.16:/home/drun48/stellar-frontend",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@babel/runtime": "^7.25.4",
@@ -42,6 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "cypress": "^14.0.0",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",

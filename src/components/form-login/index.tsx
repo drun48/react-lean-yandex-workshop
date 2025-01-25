@@ -25,6 +25,7 @@ function FormLogin() {
         value={form.email}
         name={"email"}
         isIcon={false}
+        data-testid='input-auth-email'
       />
       <Input
         type={"password"}

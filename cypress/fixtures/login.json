@@ -1,0 +1,9 @@
+{
+    "success": true,
+    "accessToken": "Bearer token",
+    "refreshToken": "test-refreshToken",
+    "user": {
+        "email": "test@mail.ru",
+        "name": "test-login"
+    }
+}
