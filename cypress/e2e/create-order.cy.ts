@@ -9,7 +9,7 @@ describe("Create Order", () => {
     cy.intercept("GET", "ingredients", { fixture: "ingredients" });
   });
   it("should create order and get order number", () => {
-    cy.auth("http://localhost:5173");
+    cy.auth("/");
     cy.createOrder();
     cy.wait("@createOrder")
       .its("response.body")
@@ -19,10 +19,10 @@ describe("Create Order", () => {
   });
 
   it("should create order without auth and redirect on login page", () => {
-    cy.visit("http://localhost:5173");
+    cy.visit("/");
     cy.createOrder();
     cy.location("pathname").should("eq", "/login");
-    cy.auth("http://localhost:5173");
+    cy.auth("/");
     cy.createOrder();
     cy.wait("@createOrder")
       .its("response.body")
@@ -32,7 +32,7 @@ describe("Create Order", () => {
   });
 
   it('should create order and open modal order', ()=>{
-    cy.auth("http://localhost:5173");
+    cy.auth("/");
     cy.createOrder();
     cy.get('[data-testid=order-number]').should('have.text', '000666')
   })

@@ -3,7 +3,7 @@ import {} from "cypress";
 describe("Modal Ingredint", () => {
   beforeEach(() => {
     cy.intercept("GET", "ingredients", { fixture: "ingredients" });
-    cy.visit("http://localhost:5173");
+    cy.visit("/");
   });
 
   it("should modal ingredient should open when click on ingredient", () => {

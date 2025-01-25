@@ -47,7 +47,7 @@ Cypress.Commands.add(
 Cypress.Commands.add("auth", (visitNext?: string) => {
   const email = "test@mail.ru";
 
-  cy.visit("http://localhost:5173/login");
+  cy.visit("/login");
   cy.get("[data-testid=input-auth-email]").type(`${email}{enter}`);
 
   if (visitNext) {

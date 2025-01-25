@@ -4,7 +4,7 @@ import {} from '../support/cypress'
 describe("Constructor Burger", () => {
   beforeEach(() => {
     cy.intercept("GET", "ingredients", { fixture: "ingredients" });
-    cy.visit("http://localhost:5173");
+    cy.visit("/");
   });
 
   it("should include two buns on top and bottom", () => {
