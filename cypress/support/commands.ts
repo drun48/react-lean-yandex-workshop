@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { SELECTORS_INGREDIENT_1 } from "./selectors";
+import { SELECTORS_DROP_CONTAINER_INGREDIENT, SELECTORS_INGREDIENT_1 } from "./selectors";
 
 // ***********************************************
 // This example commands.ts shows you how to
@@ -59,8 +59,8 @@ Cypress.Commands.add("auth", (visitNext?: string) => {
 });
 
 Cypress.Commands.add("createOrder", () => {
-  cy.dropElement(SELECTORS_INGREDIENT_1, "[data-testid=container-drop]");
-  cy.dropElement("[data-testid=ingredient-4]", "[data-testid=container-drop]");
+  cy.dropElement(SELECTORS_INGREDIENT_1, SELECTORS_DROP_CONTAINER_INGREDIENT);
+  cy.dropElement("[data-testid=ingredient-4]", SELECTORS_DROP_CONTAINER_INGREDIENT);
 
   cy.get("[data-testid=create-order-btn]").click();
 });
