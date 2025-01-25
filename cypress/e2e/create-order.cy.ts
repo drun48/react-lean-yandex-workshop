@@ -30,4 +30,10 @@ describe("Create Order", () => {
         expect(body.order).to.have.property("number", 666);
       });
   });
+
+  it('should create order and open modal order', ()=>{
+    cy.auth("http://localhost:5173");
+    cy.createOrder();
+    cy.get('[data-testid=order-number]').should('have.text', '000666')
+  })
 });

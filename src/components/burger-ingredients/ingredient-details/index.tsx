@@ -13,19 +13,24 @@ const info = [
 function IngredientDetails() {
   const params = useParams() as { id: string };
   const data = useAppSelector((state) =>
-    getIngredientsById({ ingredients: state.ingredients, id:params.id })
+    getIngredientsById({ ingredients: state.ingredients, id: params.id })
   );
 
   return (
     data && (
       <div className={styles["ingredient-details"]}>
         <img src={data?.image_large} className="mb-4" alt="Икона ингредиента" />
-        <p className="text_type_main-medium">{data?.name}</p>
+        <p className="text_type_main-medium" data-testid="name-ingredient">
+          {data?.name}
+        </p>
         <ul className={[styles["ingredient-details__list"], "mt-8"].join(" ")}>
           {info.map((item, index) => (
             <li key={index} className={styles["list__item"]}>
               <p className="text_type_main-default">{item.title}</p>
-              <p className="text_type_digits-default">
+              <p
+                className="text_type_digits-default"
+                data-testid={`info-ingredient-${item.key}`}
+              >
                 {(data as Record<string, string | number>)?.[item.key]}
               </p>
             </li>
