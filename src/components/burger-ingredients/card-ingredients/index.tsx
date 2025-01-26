@@ -32,7 +32,7 @@ function CardIngredient({ data }: Props) {
   }, [data.type, data.id, list, bun?.id]);
 
   return (
-    <article className={styles.card} ref={drag}>
+    <article data-testid={`ingredient-${data.id}`} className={styles.card} ref={drag}>
       {count > 0 && <Counter count={count} size="default" extraClass="m-1" />}
       <img src={data.image} className="pl-4 pr-4" alt="Икона ингредиента" />
       <div className={styles.price}>

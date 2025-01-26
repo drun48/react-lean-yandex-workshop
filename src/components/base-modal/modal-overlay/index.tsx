@@ -3,6 +3,6 @@ type Props = {
 };
 
 function ModalOverlay({ onClick }: Props) {
-  return <div className="overlay" onClick={onClick} />;
+  return <div className="overlay" onClick={onClick} data-testid="modal-overlay"/>;
 }
 export default ModalOverlay;

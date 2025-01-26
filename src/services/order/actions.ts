@@ -3,7 +3,7 @@ import { createOrder as createOrderApi, getOrderById as getOrderByIdApi } from "
 import { RootState } from "..";
 import { CreateOrder } from "../../api/order/type";
 import {
-  clearContructor,
+  clearConstructor,
   ConstructorItem,
 } from "../constructor-ingredients/slice";
 import { Order } from "../../types/order";
@@ -25,7 +25,7 @@ export const createOrder = createAsyncThunk<
   if (!data) {
     return thunkAPI.rejectWithValue("problem");
   }
-  thunkAPI.dispatch(clearContructor());
+  thunkAPI.dispatch(clearConstructor());
   return data;
 });
 

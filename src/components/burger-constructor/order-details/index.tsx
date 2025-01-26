@@ -10,7 +10,7 @@ function OrderDetails() {
   return (
     <div className={[styles["order-details"], "pt-20", "pb-20"].join(" ")}>
       {typeof order === "number" && (
-        <h2 className="text_type_digits-large mt-8">
+        <h2 className="text_type_digits-large mt-8" data-testid="order-number">
           {getNumberRank(order, 6)}
         </h2>
       )}

@@ -12,7 +12,7 @@ export type DTOProfileOrderMessage = {
   orders: (Order & { _id: string })[];
 };
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
   orders: [],
   statusSocket: WebsocketStatus.OFFLINE,
 };

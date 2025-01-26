@@ -36,11 +36,12 @@ function BaseModal({ children, title, handlerClose }: Props) {
         {title ? (
           <div className={style.dialog_title}>
             <h3 className="text_type_main-large">{title}</h3>
-            <CloseIcon
-              type="primary"
-              className={style.close_icon}
-              onClick={handlerClickOverlay}
-            />
+            <div  onClick={handlerClickOverlay} data-testid="modal-icon-close">
+              <CloseIcon
+                type="primary"
+                className={style.close_icon}
+              />
+            </div>
           </div>
         ) : (
           <CloseIcon

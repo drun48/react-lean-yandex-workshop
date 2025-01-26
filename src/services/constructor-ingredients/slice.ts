@@ -9,7 +9,7 @@ type InitialState = {
   list: ConstructorItem[];
 };
 
-const initialState: InitialState = {
+export const initialState: InitialState = {
   bun: null,
   list: [],
 };
@@ -57,7 +57,7 @@ export const sliceConstructorIngredient = createSlice({
       state.list.splice(currentIndex, 1);
       state.list.splice(newIndex, 0, action.payload.currentElement);
     },
-    clearContructor(state) {
+    clearConstructor(state) {
       state.bun = initialState.bun;
       state.list = initialState.list;
     },
@@ -71,7 +71,7 @@ export const {
   addIngredient,
   deleteIngredient,
   sortIngredient,
-  clearContructor,
+  clearConstructor,
 } = sliceConstructorIngredient.actions;
 export const { getConstructorIngredient } =
   sliceConstructorIngredient.selectors;

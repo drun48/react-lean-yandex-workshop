@@ -16,7 +16,7 @@ type InitialState = {
   isActiveforgotPassword: boolean;
 };
 
-const initialState: InitialState = {
+export const initialState: InitialState = {
   user: null,
   loading: false,
   error: false,
